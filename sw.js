@@ -1,6 +1,6 @@
 /* Pandamo — Service Worker
    Hält die App offline lauffähig. Version bei jeder Änderung hochzählen. */
-const VERSION = 'pandamo-v2';
+const VERSION = 'pandamo-v3';
 const CORE = [
   './',
   './index.html',

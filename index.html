@@ -117,7 +117,9 @@ p{margin:0}
 .wordmark svg{width:20px;height:20px;color:var(--leaf)}
 .claim{font-family:var(--font-body);font-style:italic;font-size:13px;color:var(--ink-3);letter-spacing:.03em;margin-top:3px}
 .greet{font-family:var(--font-display);font-weight:500;font-size:20px;color:var(--ink-2);margin-top:12px;display:flex;align-items:center;gap:7px}
-.greet svg{width:21px;height:21px;flex:0 0 21px;color:var(--amber)}
+.greet svg{width:21px;height:21px;flex:0 0 21px}
+.greet .gic{display:inline-flex;color:var(--amber)}
+.greet .gic.leaf{color:var(--leaf)}
 .greet-sub{font-size:14px;color:var(--ink-3);margin-top:3px;line-height:1.45}
 .head-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
 .bell{width:46px;height:46px;flex:0 0 46px;border-radius:50%;background:var(--card);box-shadow:var(--shadow-s);display:grid;place-items:center;position:relative}
@@ -130,7 +132,8 @@ p{margin:0}
 .hero{position:relative;border-radius:26px;overflow:hidden;box-shadow:var(--shadow-m);background:var(--room-2);width:100%;display:block}
 .hero-scene{position:absolute;inset:0}
 .hero-scene svg{width:100%;height:100%;display:block}
-.hero-body{position:relative;padding:22px 18px 20px;min-height:252px;display:flex;flex-direction:column;justify-content:center;width:60%}
+.hero-body{position:relative;padding:22px 18px 20px;min-height:252px;display:flex;flex-direction:column;justify-content:center;width:62%;
+  background:linear-gradient(96deg, var(--room-1) 42%, transparent 92%)}
 .hero h2{font-size:31px;line-height:1.06;color:var(--ink)}
 .hero p{margin-top:8px;font-size:14.5px;color:var(--ink-2)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--green);color:#FCF8F0;font-family:var(--font-display);font-weight:600;font-size:17px;padding:14px 22px;border-radius:999px;box-shadow:0 8px 18px rgba(60,101,49,.26);transition:transform .16s ease,box-shadow .16s ease}
@@ -1339,7 +1342,7 @@ function viewHome(){
     <div>
       <div class="wordmark"><span>Panda<em>mo</em></span>${leafMark}</div>
       <div class="claim">Find your calm.</div>
-      <div class="greet">${g.t} ${icon(g.i)}</div>
+      <div class="greet">${g.t} <span class="gic ${g.i==='leaf'?'leaf':''}">${icon(g.i)}</span></div>
       <div class="greet-sub">Schön, dass du da bist.<br>Atme. Beweg dich. Bleib beweglich.</div>
     </div>
     <div class="head-right">
