@@ -1,0 +1,1988 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pandamo</title>
+<meta name="description" content="Pandamo – Find your calm. Tägliche Bewegungseinheiten bei Morbus Bechterew: Beweglichkeit, Atmung, Kraft und Laufen, animiert vorgeführt.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Pandamo">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F3EADB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1D1812" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap">
+<style>
+/* Grundgerüst: Safe-Area des iPhones, Reset */
+:root{
+  color-scheme:light dark;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{overscroll-behavior:none;-webkit-text-size-adjust:100%}
+body{margin:0;background:#F3EADB;font-family:system-ui,sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<style>
+/* ============================================================
+   PANDAMO — Find your calm.
+   Bewegungsapp bei Morbus Bechterew
+   ============================================================ */
+:root{
+  --bg:#F3EADB; --bg-2:#EADDC7;
+  --card:#FCF7EE; --card-2:#F1E8D7; --card-3:#E6DAC3;
+  --ink:#3B2A1E; --ink-2:#6E5B4B; --ink-3:#9C8A77;
+  --green:#4C7A3E; --green-2:#3C6531; --green-soft:#DEE8CE; --green-ink:#33582A;
+  --leaf:#6FA84B; --rose:#E0A08C; --amber:#DE8A3C;
+  --line:rgba(92,68,44,.12); --line-2:rgba(92,68,44,.07);
+  --shadow-s:0 2px 6px rgba(88,66,44,.06);
+  --shadow-m:0 8px 20px rgba(88,66,44,.10);
+  --shadow-l:0 16px 38px rgba(88,66,44,.16);
+  --overlay:rgba(59,42,30,.42);
+  --panda-dark:#40332C; --panda-dark-2:#584739; --panda-light:#FDFAF3;
+  --panda-shade:#EADFCB; --paw:#C99B72; --paw-2:#A9764F;
+  --mat:#93AC6B; --mat-2:#7E9659;
+  --room-1:#F8EAD2; --room-2:#EFDCBB; --room-3:#E2CBA2;
+  --wood:#C79C6C; --lantern:#F2B95C; --glow:rgba(242,185,92,.35);
+  --scrim:rgba(255,255,255,.62);
+  --font-display:'Fredoka','Trebuchet MS',ui-rounded,system-ui,sans-serif;
+  --font-body:'Nunito Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#1D1812; --bg-2:#16120D;
+    --card:#2A231B; --card-2:#332B21; --card-3:#3D3328;
+    --ink:#F4EADA; --ink-2:#C4B3A0; --ink-3:#95836F;
+    --green:#82AC62; --green-2:#6D9650; --green-soft:#2F3B25; --green-ink:#C6DCB0;
+    --leaf:#8FC067; --rose:#D0917E; --amber:#E39B55;
+    --line:rgba(244,234,218,.12); --line-2:rgba(244,234,218,.06);
+    --shadow-s:0 2px 6px rgba(0,0,0,.30);
+    --shadow-m:0 8px 20px rgba(0,0,0,.38);
+    --shadow-l:0 16px 38px rgba(0,0,0,.48);
+    --overlay:rgba(10,8,5,.62);
+    --panda-dark:#2E251F; --panda-dark-2:#463A2F; --panda-light:#EFE6D6;
+    --panda-shade:#CDBFA6; --paw:#A9805E; --paw-2:#835B3B;
+    --mat:#6E8451; --mat-2:#5B6E42;
+    --room-1:#3A3024; --room-2:#2E271D; --room-3:#241E16;
+    --wood:#7A5C3C; --lantern:#C98F3E; --glow:rgba(201,143,62,.28);
+    --scrim:rgba(29,24,18,.55);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1D1812; --bg-2:#16120D;
+  --card:#2A231B; --card-2:#332B21; --card-3:#3D3328;
+  --ink:#F4EADA; --ink-2:#C4B3A0; --ink-3:#95836F;
+  --green:#82AC62; --green-2:#6D9650; --green-soft:#2F3B25; --green-ink:#C6DCB0;
+  --leaf:#8FC067; --rose:#D0917E; --amber:#E39B55;
+  --line:rgba(244,234,218,.12); --line-2:rgba(244,234,218,.06);
+  --shadow-s:0 2px 6px rgba(0,0,0,.30);
+  --shadow-m:0 8px 20px rgba(0,0,0,.38);
+  --shadow-l:0 16px 38px rgba(0,0,0,.48);
+  --overlay:rgba(10,8,5,.62);
+  --panda-dark:#2E251F; --panda-dark-2:#463A2F; --panda-light:#EFE6D6;
+  --panda-shade:#CDBFA6; --paw:#A9805E; --paw-2:#835B3B;
+  --mat:#6E8451; --mat-2:#5B6E42;
+  --room-1:#3A3024; --room-2:#2E271D; --room-3:#241E16;
+  --wood:#7A5C3C; --lantern:#C98F3E; --glow:rgba(201,143,62,.28);
+  --scrim:rgba(29,24,18,.55);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overscroll-behavior:none}
+button{font:inherit;color:inherit;border:0;background:none;margin:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent;text-align:left}
+input,select{font:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--green);outline-offset:3px;border-radius:10px}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+
+/* ---------- Shell ---------- */
+#app{height:100%;max-width:440px;margin:0 auto;background:var(--bg);display:flex;flex-direction:column;position:relative;overflow:hidden}
+.screen{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:4px 16px 26px;scrollbar-width:none}
+.screen::-webkit-scrollbar{display:none}
+.stack{display:flex;flex-direction:column;gap:14px}
+
+/* ---------- Kopf ---------- */
+.apphead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:14px 2px 16px}
+.wordmark{font-family:var(--font-display);font-weight:600;font-size:30px;line-height:1.05;color:var(--ink);display:flex;align-items:center;gap:7px}
+.wordmark em{font-style:normal;color:var(--green)}
+.wordmark svg{width:20px;height:20px;color:var(--leaf)}
+.claim{font-family:var(--font-body);font-style:italic;font-size:13px;color:var(--ink-3);letter-spacing:.03em;margin-top:3px}
+.greet{font-family:var(--font-display);font-weight:500;font-size:20px;color:var(--ink-2);margin-top:12px;display:flex;align-items:center;gap:7px}
+.greet-sub{font-size:14px;color:var(--ink-3);margin-top:3px;line-height:1.45}
+.head-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.bell{width:46px;height:46px;flex:0 0 46px;border-radius:50%;background:var(--card);box-shadow:var(--shadow-s);display:grid;place-items:center;position:relative}
+.bell svg{width:21px;height:21px}
+.bell .dot{position:absolute;top:11px;right:12px;width:8px;height:8px;border-radius:50%;background:var(--amber);border:2px solid var(--card)}
+.hand-note{font-style:italic;color:var(--ink-3);font-size:12.5px;line-height:1.4;text-align:right;max-width:124px;transform:rotate(-4deg)}
+
+/* ---------- Karten ---------- */
+.card{background:var(--card);border-radius:22px;box-shadow:var(--shadow-s)}
+.hero{position:relative;border-radius:26px;overflow:hidden;box-shadow:var(--shadow-m);background:var(--room-2);width:100%;display:block}
+.hero-scene{position:absolute;inset:0}
+.hero-scene svg{width:100%;height:100%;display:block}
+.hero-body{position:relative;padding:22px 18px 20px;min-height:252px;display:flex;flex-direction:column;justify-content:center;width:60%}
+.hero h2{font-size:31px;line-height:1.06;color:var(--ink)}
+.hero p{margin-top:8px;font-size:14.5px;color:var(--ink-2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--green);color:#FCF8F0;font-family:var(--font-display);font-weight:600;font-size:17px;padding:14px 22px;border-radius:999px;box-shadow:0 8px 18px rgba(60,101,49,.26);transition:transform .16s ease,box-shadow .16s ease}
+.btn svg{width:18px;height:18px}
+.btn:active{transform:translateY(1px) scale(.985)}
+.btn.ghost{background:var(--card);color:var(--ink);box-shadow:var(--shadow-s)}
+.btn.soft{background:var(--green-soft);color:var(--green-ink);box-shadow:none}
+.btn.block{width:100%}
+.btn.sm{font-size:15px;padding:11px 18px}
+.hero .btn{margin-top:18px;align-self:flex-start}
+
+/* ---------- Chips ---------- */
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;background:var(--card);color:var(--ink-2);border-radius:999px;padding:9px 15px;font-size:13.5px;font-weight:700;box-shadow:var(--shadow-s);transition:background .18s,color .18s}
+.chip svg{width:16px;height:16px}
+.chip[aria-pressed="true"]{background:var(--green);color:#FBF7EE;box-shadow:0 6px 14px rgba(60,101,49,.22)}
+
+/* ---------- Kacheln ---------- */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{background:var(--card);border-radius:20px;padding:14px 11px 12px;box-shadow:var(--shadow-s);display:flex;flex-direction:column;gap:6px;min-height:156px;transition:transform .16s ease}
+.tile:active{transform:scale(.98)}
+.tile-ic{width:52px;height:52px;border-radius:50%;background:var(--card-2);display:grid;place-items:center}
+.tile-ic svg{width:30px;height:30px}
+.tile h3{font-size:15px;line-height:1.15}
+.tile p{font-size:12.5px;color:var(--ink-3);line-height:1.3;flex:1}
+.tile-foot{display:flex;align-items:center;justify-content:space-between;gap:4px;font-size:12.5px;font-weight:700;color:var(--ink-2)}
+.tile-foot .meta{display:flex;align-items:center;gap:5px;min-width:0}
+.tile-foot .meta span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tile-foot svg{width:14px;height:14px;flex:0 0 14px}
+
+/* ---------- Zitat ---------- */
+.quote{position:relative;border-radius:22px;overflow:hidden;box-shadow:var(--shadow-s);background:var(--card-2)}
+.quote-scene{position:absolute;inset:0}
+.quote-body{position:relative;padding:22px 20px 18px;text-align:center}
+.quote-body p{font-family:var(--font-display);font-weight:400;font-style:italic;font-size:19px;line-height:1.32;color:var(--ink-2)}
+.quote-rule{width:34px;height:2px;background:var(--line);margin:12px auto 8px;border-radius:2px}
+.quote-body span{font-size:11px;letter-spacing:.26em;color:var(--ink-3);text-transform:uppercase;font-weight:700}
+
+/* ---------- Tabbar ---------- */
+.tabbar{flex:0 0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:var(--card);border-radius:26px 26px 0 0;box-shadow:0 -6px 22px rgba(88,66,44,.10);padding:8px 10px 10px;z-index:5}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 4px 5px;border-radius:18px;color:var(--ink-3);font-size:11.5px;font-weight:700;transition:color .18s,background .18s}
+.tab svg{width:23px;height:23px}
+.tab[aria-selected="true"]{color:var(--green);background:var(--green-soft)}
+
+/* ---------- Abschnitte ---------- */
+.sec{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:22px 2px 10px}
+.sec h3{font-size:19px}
+.sec .more{font-size:13px;font-weight:800;color:var(--green)}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);font-weight:800}
+
+/* ---------- Listenzeilen ---------- */
+.row{display:flex;align-items:center;gap:13px;background:var(--card);border-radius:20px;padding:12px 14px 12px 12px;box-shadow:var(--shadow-s);width:100%;transition:transform .16s ease}
+.row:active{transform:scale(.99)}
+.row-ic{width:52px;height:52px;flex:0 0 52px;border-radius:16px;background:var(--card-2);display:grid;place-items:center}
+.row-ic svg{width:30px;height:30px}
+.row-main{flex:1;min-width:0}
+.row-main h4{font-size:16px;line-height:1.2}
+.row-main p{margin-top:2px;font-size:12.5px;color:var(--ink-3);line-height:1.35}
+.row-meta{display:flex;align-items:center;gap:6px;margin-top:6px;flex-wrap:wrap}
+.pill{font-size:11px;font-weight:800;padding:3px 9px;border-radius:999px;background:var(--card-2);color:var(--ink-2);white-space:nowrap}
+.pill.green{background:var(--green-soft);color:var(--green-ink)}
+.pill.amber{background:rgba(222,138,60,.16);color:var(--amber)}
+.row-go{color:var(--ink-3);display:grid;place-items:center;flex:0 0 auto}
+.row-go svg{width:18px;height:18px}
+.row.today{border:1.5px solid var(--green-soft);box-shadow:var(--shadow-m)}
+.row.done .row-ic{background:var(--green-soft)}
+/* ---------- Player ---------- */
+.player{position:absolute;inset:0;z-index:30;background:var(--bg);display:flex;flex-direction:column;transform:translateY(100%);transition:transform .34s cubic-bezier(.32,.72,0,1)}
+.player.open{transform:translateY(0)}
+.player-head{flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:12px 14px 8px}
+.circ{width:44px;height:44px;flex:0 0 44px;border-radius:50%;background:var(--card);box-shadow:var(--shadow-s);display:grid;place-items:center}
+.circ svg{width:20px;height:20px}
+.player-title{flex:1;text-align:center;min-width:0}
+.player-title h2{font-size:20px;display:flex;align-items:center;justify-content:center;gap:6px}
+.player-title h2 svg{width:15px;height:15px;color:var(--leaf);flex:0 0 15px}
+.player-title p{font-size:12.5px;color:var(--ink-3);margin-top:1px}
+.segbar{display:flex;gap:6px;padding:6px 26px 10px}
+.seg{flex:1;height:5px;border-radius:3px;background:var(--card-3);overflow:hidden}
+.seg i{display:block;height:100%;width:0;background:var(--green);border-radius:3px}
+.seg.done i{width:100%}
+.seg.now i{transition:width .96s linear}
+
+/* Bühne */
+.stage{position:relative;flex:1 1 auto;min-height:190px;border-radius:24px;margin:0 14px;overflow:hidden;background:var(--room-2)}
+.stage svg.scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.bubble{position:absolute;right:10px;top:34%;background:var(--card);border-radius:16px;padding:9px 13px;box-shadow:var(--shadow-m);max-width:150px}
+.bubble b{font-family:var(--font-display);font-size:15px;display:flex;align-items:center;gap:6px;color:var(--ink)}
+.bubble b svg{width:15px;height:15px;color:var(--leaf)}
+.bubble span{font-size:12px;color:var(--ink-2);line-height:1.3;display:block;margin-top:2px}
+.cue{position:absolute;left:12px;top:22%;font-style:italic;font-size:13px;line-height:1.38;color:var(--ink-2);max-width:118px;transform:rotate(-4deg);text-shadow:0 1px 0 var(--scrim)}
+.stage-tag{position:absolute;left:12px;bottom:12px;display:flex;gap:6px}
+
+/* Übungskarte */
+.ex-card{flex:0 0 auto;margin:12px 14px 0;background:var(--card);border-radius:24px;box-shadow:var(--shadow-s);padding:16px 16px 14px;display:flex;gap:12px;align-items:flex-start}
+.ex-text{flex:1;min-width:0}
+.ex-text h3{font-size:24px;line-height:1.1}
+.ex-text>p{margin-top:6px;font-size:13.5px;color:var(--ink-2);line-height:1.42}
+.ex-cue{margin-top:9px;font-style:italic;font-size:13px;color:var(--green);display:flex;align-items:flex-start;gap:6px}
+.ex-cue svg{width:15px;height:15px;flex:0 0 15px;margin-top:2px}
+.ring{position:relative;flex:0 0 96px;width:96px;height:96px;display:grid;place-items:center}
+.ring svg{position:absolute;inset:0;width:96px;height:96px;transform:rotate(-90deg)}
+.ring .bg{fill:none;stroke:var(--card-2);stroke-width:7}
+.ring .fg{fill:none;stroke:var(--green);stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset .95s linear}
+.ring-in{position:relative;text-align:center}
+.ring-in .leaf{color:var(--leaf);display:block;margin:0 auto 1px}
+.ring-in .leaf svg{position:static;width:15px;height:15px;transform:none}
+.ring-in b{font-family:var(--font-display);font-size:23px;letter-spacing:-.02em;font-variant-numeric:tabular-nums;display:block;line-height:1.05}
+.ring-in span{font-size:11px;color:var(--ink-3);font-weight:700}
+
+/* Steuerung */
+.controls{flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:34px;padding:16px 0 12px}
+.ctrl{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--ink-2)}
+.ctrl .knob{width:58px;height:58px;border-radius:50%;background:var(--card-2);display:grid;place-items:center;box-shadow:var(--shadow-s);transition:transform .14s ease}
+.ctrl:active .knob{transform:scale(.94)}
+.ctrl .knob svg{width:24px;height:24px}
+.ctrl.main .knob{width:74px;height:74px;background:var(--green);color:#FBF7EE;box-shadow:0 10px 22px rgba(60,101,49,.30)}
+.ctrl.main .knob svg{width:30px;height:30px}
+.ctrl:disabled{opacity:.4}
+
+/* Infokarten */
+.info-cards{flex:0 0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:2px 14px 14px}
+.info-card{background:var(--card);border-radius:18px;padding:11px 10px 10px;box-shadow:var(--shadow-s);display:flex;flex-direction:column;gap:5px}
+.info-card .ic{width:36px;height:36px;border-radius:50%;background:var(--green-soft);display:grid;place-items:center}
+.info-card .ic svg{width:21px;height:21px;color:var(--green)}
+.info-card h4{font-size:13.5px}
+.info-card .txt{display:flex;align-items:flex-end;justify-content:space-between;gap:4px}
+.info-card p{font-size:11.5px;color:var(--ink-3);line-height:1.25}
+.info-card .txt>svg{width:15px;height:15px;color:var(--ink-3);flex:0 0 15px;margin-bottom:1px}
+
+/* ---------- Abschluss ---------- */
+.finish{position:absolute;inset:0;z-index:35;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;text-align:center;gap:14px;overflow-y:auto}
+.finish .fscene{width:220px;height:180px}
+.finish h2{font-size:30px}
+.finish>p{color:var(--ink-2);font-size:14.5px;max-width:280px}
+.finish-stats{display:flex;gap:10px;width:100%;max-width:340px}
+.fstat{flex:1;background:var(--card);border-radius:18px;padding:12px 8px;box-shadow:var(--shadow-s)}
+.fstat b{font-family:var(--font-display);font-size:22px;display:block;line-height:1.1}
+.fstat span{font-size:11.5px;color:var(--ink-3);font-weight:700}
+.stiff-log{width:100%;max-width:340px;background:var(--card);border-radius:20px;padding:14px;box-shadow:var(--shadow-s);text-align:left}
+.stiff-log h4{font-size:15px}
+.stiff-log p{font-size:12.5px;color:var(--ink-3);margin-top:2px}
+.stiff-opts{display:flex;gap:7px;margin-top:11px}
+.stiff-opts button{flex:1;background:var(--card-2);border-radius:14px;padding:9px 4px;text-align:center;font-size:12px;font-weight:700;color:var(--ink-2);transition:background .16s,color .16s}
+.stiff-opts button[aria-pressed="true"]{background:var(--green);color:#FBF7EE}
+
+/* ---------- Sheet ---------- */
+.scrim{position:absolute;inset:0;z-index:40;background:var(--overlay);opacity:0;pointer-events:none;transition:opacity .26s ease}
+.scrim.open{opacity:1;pointer-events:auto}
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:41;background:var(--card);border-radius:28px 28px 0 0;box-shadow:var(--shadow-l);padding:10px 18px 24px;max-height:82%;overflow-y:auto;transform:translateY(102%);transition:transform .3s cubic-bezier(.32,.72,0,1)}
+.sheet.open{transform:translateY(0)}
+.grab{width:42px;height:5px;border-radius:3px;background:var(--card-3);margin:0 auto 14px}
+.sheet h3{font-size:21px;display:flex;align-items:center;gap:8px}
+.sheet h3 svg{width:20px;height:20px;color:var(--green)}
+.sheet .lead{color:var(--ink-2);font-size:14px;margin-top:8px;line-height:1.5}
+.steps{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:10px;counter-reset:s}
+.steps li{display:flex;gap:11px;font-size:14px;color:var(--ink-2);line-height:1.45}
+.steps li::before{counter-increment:s;content:counter(s);flex:0 0 24px;height:24px;border-radius:50%;background:var(--green-soft);color:var(--green-ink);font-family:var(--font-display);font-size:13px;display:grid;place-items:center;margin-top:1px}
+.bullets{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:9px}
+.bullets li{display:flex;gap:10px;font-size:14px;color:var(--ink-2);line-height:1.45}
+.bullets li svg{width:16px;height:16px;flex:0 0 16px;margin-top:3px;color:var(--leaf)}
+.note{margin-top:16px;background:var(--card-2);border-radius:16px;padding:12px 14px;font-size:13px;color:var(--ink-2);line-height:1.45}
+
+/* ---------- Fortschritt ---------- */
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stat{background:var(--card);border-radius:20px;padding:15px 14px;box-shadow:var(--shadow-s)}
+.stat .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:800}
+.stat .v{font-family:var(--font-display);font-size:27px;line-height:1.15;margin-top:5px;display:flex;align-items:baseline;gap:5px}
+.stat .v small{font-family:var(--font-body);font-size:13px;font-weight:700;color:var(--ink-3)}
+.stat .sub{font-size:12px;color:var(--ink-3);margin-top:2px}
+.week{display:flex;justify-content:space-between;gap:5px;background:var(--card);border-radius:20px;padding:14px 12px;box-shadow:var(--shadow-s)}
+.day{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1}
+.day span{font-size:11px;font-weight:800;color:var(--ink-3)}
+.day i{width:30px;height:30px;border-radius:50%;background:var(--card-2);display:grid;place-items:center}
+.day i svg{width:16px;height:16px;color:var(--green)}
+.day.on i{background:var(--green);color:#FBF7EE}
+.day.on i svg{color:#FBF7EE}
+.day.today span{color:var(--green)}
+.day.today i{box-shadow:0 0 0 2px var(--green-soft)}
+.chartbox{background:var(--card);border-radius:20px;padding:15px 14px 10px;box-shadow:var(--shadow-s)}
+.chartbox header{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:4px}
+.chartbox h4{font-size:15.5px}
+.chartbox .hint{font-size:12px;color:var(--ink-3)}
+.chartbox svg{width:100%;height:auto;display:block;overflow:visible}
+.chartbox .ct{font-family:var(--font-body);font-size:9.5px;font-weight:700;fill:var(--ink-3)}
+.legend{display:flex;gap:14px;margin-top:8px;font-size:11.5px;color:var(--ink-3);font-weight:700}
+.legend i{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:5px}
+.empty{background:var(--card);border-radius:20px;padding:22px 18px;box-shadow:var(--shadow-s);text-align:center;color:var(--ink-3);font-size:13.5px;line-height:1.5}
+
+/* ---------- Profil / Einstellungen ---------- */
+.group{background:var(--card);border-radius:20px;box-shadow:var(--shadow-s);overflow:hidden}
+.opt{display:flex;align-items:center;gap:12px;padding:13px 15px;width:100%;border-bottom:1px solid var(--line-2)}
+.opt:last-child{border-bottom:0}
+.opt .oic{width:34px;height:34px;flex:0 0 34px;border-radius:11px;background:var(--card-2);display:grid;place-items:center}
+.opt .oic svg{width:19px;height:19px;color:var(--green)}
+.opt .om{flex:1;min-width:0}
+.opt .om b{font-size:14.5px;font-weight:700;display:block}
+.opt .om span{font-size:12.5px;color:var(--ink-3);display:block;line-height:1.35}
+.switch{flex:0 0 46px;width:46px;height:28px;border-radius:999px;background:var(--card-3);position:relative;transition:background .2s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#FCF8F0;box-shadow:var(--shadow-s);transition:transform .2s}
+.switch[aria-checked="true"]{background:var(--green)}
+.switch[aria-checked="true"]::after{transform:translateX(18px)}
+.seg-ctl{display:flex;background:var(--card-2);border-radius:14px;padding:3px;gap:2px}
+.seg-ctl button{flex:1;padding:7px 8px;border-radius:11px;font-size:12.5px;font-weight:700;text-align:center;color:var(--ink-2);white-space:nowrap}
+.seg-ctl button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:var(--shadow-s)}
+.stepper{display:flex;align-items:center;gap:10px}
+.stepper button{width:32px;height:32px;border-radius:50%;background:var(--card-2);display:grid;place-items:center;font-family:var(--font-display);font-size:18px;color:var(--ink-2)}
+.stepper b{font-family:var(--font-display);font-size:16px;min-width:64px;text-align:center;font-variant-numeric:tabular-nums}
+.profile-head{display:flex;align-items:center;gap:14px;background:var(--card);border-radius:22px;padding:16px;box-shadow:var(--shadow-s)}
+.avatar{width:66px;height:66px;flex:0 0 66px;border-radius:50%;background:var(--card-2);display:grid;place-items:center;overflow:hidden}
+.avatar svg{width:66px;height:66px}
+.profile-head h3{font-size:19px}
+.profile-head p{font-size:13px;color:var(--ink-3);margin-top:2px}
+.disclaimer{font-size:12px;color:var(--ink-3);line-height:1.5;padding:4px 6px 0}
+.danger{color:#B0503A}
+:root[data-theme="dark"] .danger,:root:not([data-theme="light"]) .danger{color:#E28B72}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .danger{color:#B0503A}}
+
+/* ---------- Onboarding ---------- */
+.intro{position:absolute;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;padding:20px 20px 24px;gap:14px;overflow-y:auto}
+.intro-scene{width:100%;height:190px;border-radius:24px;overflow:hidden;background:var(--room-2);flex:0 0 auto;position:relative}
+.intro h2{font-size:29px;margin-top:4px}
+.intro .lead{color:var(--ink-2);font-size:14.5px;line-height:1.5}
+.pickers{display:flex;flex-direction:column;gap:12px;margin-top:2px}
+.picker h4{font-size:14px;margin-bottom:7px}
+.multi{display:flex;flex-wrap:wrap;gap:8px}
+.multi button{background:var(--card);border-radius:14px;padding:10px 14px;font-size:13.5px;font-weight:700;color:var(--ink-2);box-shadow:var(--shadow-s);display:inline-flex;align-items:center;gap:7px}
+.multi button svg{width:16px;height:16px}
+.multi button[aria-pressed="true"]{background:var(--green);color:#FBF7EE}
+.toast{position:absolute;left:50%;bottom:92px;transform:translate(-50%,14px);z-index:45;background:var(--ink);color:var(--bg);font-size:13px;font-weight:700;padding:10px 16px;border-radius:999px;box-shadow:var(--shadow-m);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+/* ============================================================
+   PANDA-RIG — Animation der Übungen
+   Alle Rigs nutzen viewBox 0 0 320 240
+   ============================================================ */
+.pv{display:block}
+.pv *{transform-box:view-box}
+.pv .p-torso,.pv .p-upper,.pv .p-head,.pv .p-armL,.pv .p-armR,.pv .p-legL,.pv .p-legR,
+.pv .p-knees,.pv .p-hips,.pv .p-body,.pv .p-chest{will-change:transform}
+
+/* Ankerpunkte je Haltung */
+.rig-sit .p-upper{transform-origin:160px 194px}
+.rig-sit .p-torso{transform-origin:160px 190px}
+.rig-sit .p-head{transform-origin:160px 146px}
+.rig-sit .p-armL{transform-origin:126px 152px}
+.rig-sit .p-armR{transform-origin:194px 152px}
+.rig-sit .p-knees{transform-origin:160px 198px}
+
+.rig-stand .p-upper{transform-origin:160px 170px}
+.rig-stand .p-torso{transform-origin:160px 168px}
+.rig-stand .p-head{transform-origin:160px 118px}
+.rig-stand .p-armL{transform-origin:130px 130px}
+.rig-stand .p-armR{transform-origin:190px 130px}
+.rig-stand .p-legL{transform-origin:142px 172px}
+.rig-stand .p-legR{transform-origin:178px 172px}
+.rig-stand .p-body{transform-origin:160px 214px}
+
+.rig-quad .p-upper{transform-origin:150px 168px}
+.rig-quad .p-torso{transform-origin:150px 166px}
+.rig-quad .p-head{transform-origin:214px 156px}
+.rig-quad .p-armR{transform-origin:212px 162px}
+.rig-quad .p-legL{transform-origin:100px 164px}
+.rig-quad .p-hips{transform-origin:100px 164px}
+
+.rig-supine .p-hips{transform-origin:176px 200px}
+.rig-supine .p-knees{transform-origin:186px 190px}
+.rig-supine .p-armR{transform-origin:126px 190px}
+.rig-supine .p-legR{transform-origin:186px 192px}
+.rig-supine .p-head{transform-origin:104px 190px}
+
+.rig-prone .p-upper{transform-origin:150px 206px}
+.rig-prone .p-head{transform-origin:212px 182px}
+.rig-prone .p-legL{transform-origin:104px 206px}
+
+.rig-run .p-body{transform-origin:160px 200px}
+.rig-run .p-upper{transform-origin:158px 168px}
+.rig-run .p-head{transform-origin:168px 122px}
+.rig-run .p-armL{transform-origin:158px 138px}
+.rig-run .p-armR{transform-origin:162px 138px}
+.rig-run .p-legL{transform-origin:156px 168px}
+.rig-run .p-legR{transform-origin:162px 168px}
+
+/* Grundatmung — läuft auf jedem Rig mit */
+@keyframes p-breath{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-2px) scale(1.022,1.035)}}
+.pv .p-torso{animation:p-breath 5.5s ease-in-out infinite}
+@keyframes p-blink{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+
+/* --- Atem / Brustkorb: 4 s ein, 6 s aus --- */
+@keyframes p-breathe-deep{0%{transform:scale(1)}40%{transform:translateY(-5px) scale(1.09,1.10)}100%{transform:scale(1)}}
+@keyframes p-breathe-arms{0%{transform:rotate(0)}40%{transform:rotate(var(--sw,22deg))}100%{transform:rotate(0)}}
+.anim-breathe .p-torso{animation:p-breathe-deep 10s ease-in-out infinite}
+.anim-breathe .p-armL{animation:p-breathe-arms 10s ease-in-out infinite;--sw:16deg}
+.anim-breathe .p-armR{animation:p-breathe-arms 10s ease-in-out infinite;--sw:-16deg}
+
+/* --- Seitliche Dehnung --- */
+@keyframes p-sidebend{0%,4%{transform:rotate(0)}22%,42%{transform:rotate(-15deg)}52%,56%{transform:rotate(0)}74%,94%{transform:rotate(15deg)}100%{transform:rotate(0)}}
+@keyframes p-sidebend-armL{0%,4%{transform:rotate(0)}22%,42%{transform:rotate(-8deg)}52%,56%{transform:rotate(0)}74%,94%{transform:rotate(-128deg)}100%{transform:rotate(0)}}
+@keyframes p-sidebend-armR{0%,4%{transform:rotate(0)}22%,42%{transform:rotate(128deg)}52%,56%{transform:rotate(0)}74%,94%{transform:rotate(8deg)}100%{transform:rotate(0)}}
+.anim-sidebend .p-upper{animation:p-sidebend 12s ease-in-out infinite}
+.anim-sidebend .p-armL{animation:p-sidebend-armL 12s ease-in-out infinite}
+.anim-sidebend .p-armR{animation:p-sidebend-armR 12s ease-in-out infinite}
+
+/* --- Sanfte Drehung --- */
+@keyframes p-twist{0%,4%{transform:scaleX(1) translateX(0)}22%,42%{transform:scaleX(.84) translateX(-10px)}52%,56%{transform:scaleX(1) translateX(0)}74%,94%{transform:scaleX(.84) translateX(10px)}100%{transform:scaleX(1) translateX(0)}}
+@keyframes p-twist-head{0%,4%{transform:rotate(0) translateX(0)}22%,42%{transform:rotate(-7deg) translateX(-7px)}52%,56%{transform:rotate(0) translateX(0)}74%,94%{transform:rotate(7deg) translateX(7px)}100%{transform:rotate(0) translateX(0)}}
+.anim-twist .p-torso{animation:p-twist 12s ease-in-out infinite}
+.anim-twist .p-head{animation:p-twist-head 12s ease-in-out infinite}
+.anim-twist .p-armL,.anim-twist .p-armR{animation:p-twist 12s ease-in-out infinite}
+
+/* --- Nacken lösen --- */
+@keyframes p-neck{0%,4%{transform:rotate(0)}20%,40%{transform:rotate(-17deg)}50%,55%{transform:rotate(0)}70%,92%{transform:rotate(17deg)}100%{transform:rotate(0)}}
+.anim-neck .p-head{animation:p-neck 12s ease-in-out infinite}
+
+/* --- Kinn-Nicken --- */
+@keyframes p-chintuck{0%,10%{transform:translate(0,0) rotate(0)}45%,65%{transform:translate(-3px,3px) rotate(9deg)}100%{transform:translate(0,0) rotate(0)}}
+.anim-chintuck .p-head{animation:p-chintuck 7s ease-in-out infinite}
+
+/* --- Schulterkreisen --- */
+@keyframes p-rollL{0%{transform:translate(0,0)}25%{transform:translate(3px,-6px)}50%{transform:translate(8px,0)}75%{transform:translate(3px,6px)}100%{transform:translate(0,0)}}
+@keyframes p-rollR{0%{transform:translate(0,0)}25%{transform:translate(-3px,-6px)}50%{transform:translate(-8px,0)}75%{transform:translate(-3px,6px)}100%{transform:translate(0,0)}}
+.anim-shoulders .p-armL{animation:p-rollL 4s ease-in-out infinite}
+.anim-shoulders .p-armR{animation:p-rollR 4s ease-in-out infinite}
+
+/* --- Schmetterlingssitz --- */
+@keyframes p-butterfly{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.9) translateY(3px)}}
+.anim-butterfly .p-knees{animation:p-butterfly 4.5s ease-in-out infinite}
+
+/* --- Arme öffnen --- */
+@keyframes p-openL{0%,100%{transform:rotate(26deg)}50%{transform:rotate(-16deg)}}
+@keyframes p-openR{0%,100%{transform:rotate(-26deg)}50%{transform:rotate(16deg)}}
+.anim-open .p-armL{animation:p-openL 6s ease-in-out infinite}
+.anim-open .p-armR{animation:p-openR 6s ease-in-out infinite}
+.anim-open .p-torso{animation:p-breathe-deep 6s ease-in-out infinite}
+
+/* --- Katze & Kuh --- */
+@keyframes p-catcow{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-9px) rotate(-3deg)}}
+@keyframes p-catcow-head{0%,100%{transform:rotate(-12deg) translateY(-2px)}50%{transform:rotate(22deg) translateY(6px)}}
+@keyframes p-catcow-hip{0%,100%{transform:rotate(5deg)}50%{transform:rotate(-7deg)}}
+.anim-catcow .p-torso{animation:p-catcow 7s ease-in-out infinite}
+.anim-catcow .p-head{animation:p-catcow-head 7s ease-in-out infinite}
+.anim-catcow .p-hips{animation:p-catcow-hip 7s ease-in-out infinite}
+
+/* --- Vierfüßler Arm & Bein --- */
+@keyframes p-birddog-arm{0%,8%{transform:rotate(0)}30%,46%{transform:rotate(-58deg)}62%,100%{transform:rotate(0)}}
+@keyframes p-birddog-leg{0%,8%{transform:rotate(0)}30%,46%{transform:rotate(38deg)}62%,100%{transform:rotate(0)}}
+.anim-birddog .p-armR{animation:p-birddog-arm 8s ease-in-out infinite}
+.anim-birddog .p-legL{animation:p-birddog-leg 8s ease-in-out infinite}
+
+/* --- Brücke --- */
+@keyframes p-bridge{0%,8%{transform:translateY(0)}38%,62%{transform:translateY(-20px)}92%,100%{transform:translateY(0)}}
+.anim-bridge .p-hips{animation:p-bridge 8s ease-in-out infinite}
+
+/* --- Knie zur Brust --- */
+@keyframes p-kneehug{0%,10%{transform:rotate(0)}45%,65%{transform:rotate(-40deg)}100%{transform:rotate(0)}}
+.anim-kneehug .p-knees{animation:p-kneehug 8s ease-in-out infinite}
+
+/* --- Käfer --- */
+@keyframes p-deadbug-a{0%,100%{transform:rotate(0)}50%{transform:rotate(-34deg)}}
+@keyframes p-deadbug-b{0%,100%{transform:rotate(-34deg)}50%{transform:rotate(0)}}
+.anim-deadbug .p-armR{animation:p-deadbug-a 5s ease-in-out infinite}
+.anim-deadbug .p-legR{animation:p-deadbug-b 5s ease-in-out infinite}
+
+/* --- Sphinx / Aufrichten in Bauchlage --- */
+@keyframes p-sphinx{0%,8%{transform:rotate(0)}38%,66%{transform:rotate(-13deg)}95%,100%{transform:rotate(0)}}
+@keyframes p-sphinx-head{0%,8%{transform:rotate(0)}38%,66%{transform:rotate(-12deg)}95%,100%{transform:rotate(0)}}
+.anim-sphinx .p-upper{animation:p-sphinx 9s ease-in-out infinite}
+.anim-sphinx .p-head{animation:p-sphinx-head 9s ease-in-out infinite}
+
+/* --- Rückenstrecker --- */
+@keyframes p-superman{0%,12%{transform:rotate(0)}42%,60%{transform:rotate(-9deg)}90%,100%{transform:rotate(0)}}
+@keyframes p-superman-leg{0%,12%{transform:rotate(0)}42%,60%{transform:rotate(16deg)}90%,100%{transform:rotate(0)}}
+.anim-superman .p-upper{animation:p-superman 6s ease-in-out infinite}
+.anim-superman .p-legL{animation:p-superman-leg 6s ease-in-out infinite}
+
+/* --- Marschieren --- */
+@keyframes p-march-l{0%,100%{transform:rotate(0)}50%{transform:rotate(-26deg)}}
+@keyframes p-march-r{0%,100%{transform:rotate(-26deg)}50%{transform:rotate(0)}}
+@keyframes p-march-bob{0%,100%{transform:translateY(0)}25%,75%{transform:translateY(-3px)}}
+.anim-march .p-legL{animation:p-march-l 1.6s ease-in-out infinite}
+.anim-march .p-legR{animation:p-march-r 1.6s ease-in-out infinite}
+.anim-march .p-armL{animation:p-march-r 1.6s ease-in-out infinite}
+.anim-march .p-armR{animation:p-march-l 1.6s ease-in-out infinite}
+.anim-march .p-upper{animation:p-march-bob 1.6s ease-in-out infinite}
+
+/* --- Schulterdrücken --- */
+@keyframes p-pressL{0%,100%{transform:rotate(0)}50%{transform:rotate(-124deg)}}
+@keyframes p-pressR{0%,100%{transform:rotate(0)}50%{transform:rotate(124deg)}}
+.anim-press .p-armL{animation:p-pressL 3.4s ease-in-out infinite}
+.anim-press .p-armR{animation:p-pressR 3.4s ease-in-out infinite}
+
+/* --- Seitheben --- */
+@keyframes p-raiseL{0%,100%{transform:rotate(0)}50%{transform:rotate(-74deg)}}
+@keyframes p-raiseR{0%,100%{transform:rotate(0)}50%{transform:rotate(74deg)}}
+.anim-raise .p-armL{animation:p-raiseL 3.6s ease-in-out infinite}
+.anim-raise .p-armR{animation:p-raiseR 3.6s ease-in-out infinite}
+
+/* --- Rudern (vorgebeugt) --- */
+@keyframes p-row-arm{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-16px) rotate(6deg)}}
+.anim-row .p-upper{transform:rotate(-24deg)}
+.anim-row .p-armL,.anim-row .p-armR{animation:p-row-arm 3.2s ease-in-out infinite}
+
+/* --- Band auseinanderziehen --- */
+@keyframes p-apartL{0%,100%{transform:rotate(0)}50%{transform:rotate(30deg)}}
+@keyframes p-apartR{0%,100%{transform:rotate(0)}50%{transform:rotate(-30deg)}}
+.anim-pullapart .p-armL{animation:p-apartL 3.4s ease-in-out infinite}
+.anim-pullapart .p-armR{animation:p-apartR 3.4s ease-in-out infinite}
+
+/* --- Aufstehen vom Stuhl --- */
+@keyframes p-squat{0%,10%{transform:translateY(0) scaleY(1)}48%,60%{transform:translateY(16px) scaleY(.9)}98%,100%{transform:translateY(0) scaleY(1)}}
+.anim-squat .p-body{animation:p-squat 4.4s ease-in-out infinite}
+
+/* --- Haltung / halten --- */
+@keyframes p-hold{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.anim-hold .p-upper{animation:p-hold 6s ease-in-out infinite}
+
+/* --- Ausfallschritt / Hüftbeuger --- */
+@keyframes p-lunge{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+.anim-lunge .p-body{animation:p-lunge 5s ease-in-out infinite}
+
+/* --- Laufen --- */
+@keyframes p-run-legL{0%{transform:rotate(30deg)}50%{transform:rotate(-32deg)}100%{transform:rotate(30deg)}}
+@keyframes p-run-legR{0%{transform:rotate(-32deg)}50%{transform:rotate(30deg)}100%{transform:rotate(-32deg)}}
+@keyframes p-run-armL{0%{transform:rotate(-34deg)}50%{transform:rotate(30deg)}100%{transform:rotate(-34deg)}}
+@keyframes p-run-armR{0%{transform:rotate(30deg)}50%{transform:rotate(-34deg)}100%{transform:rotate(30deg)}}
+@keyframes p-run-bob{0%,100%{transform:translateY(0)}25%,75%{transform:translateY(-5px)}}
+.anim-run .p-legL{animation:p-run-legL .72s linear infinite}
+.anim-run .p-legR{animation:p-run-legR .72s linear infinite}
+.anim-run .p-armL{animation:p-run-armL .72s linear infinite}
+.anim-run .p-armR{animation:p-run-armR .72s linear infinite}
+.anim-run .p-body{animation:p-run-bob .72s ease-in-out infinite}
+.anim-walk .p-legL{animation:p-run-legL 1.5s ease-in-out infinite}
+.anim-walk .p-legR{animation:p-run-legR 1.5s ease-in-out infinite}
+.anim-walk .p-armL{animation:p-run-armL 1.5s ease-in-out infinite}
+.anim-walk .p-armR{animation:p-run-armR 1.5s ease-in-out infinite}
+.anim-walk .p-body{animation:p-run-bob 1.5s ease-in-out infinite}
+
+/* Pause / reduzierte Bewegung */
+.pv.paused *{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){
+  .scene .amb{animation:none!important}
+}
+html.calm .pv *{animation-duration:0s!important;animation-iteration-count:1!important}
+html.calm .amb{animation:none!important}
+
+/* Umgebung */
+@keyframes sway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+@keyframes sway2{0%,100%{transform:rotate(2deg)}50%{transform:rotate(-3deg)}}
+@keyframes glow{0%,100%{opacity:.5}50%{opacity:.9}}
+.amb.leafA{animation:sway 7s ease-in-out infinite;transform-origin:20px 10px}
+.amb.leafB{animation:sway2 9s ease-in-out infinite;transform-origin:300px 8px}
+.amb.lamp{animation:glow 5s ease-in-out infinite}
+</style>
+<div id="app">
+  <main class="screen" id="screen" role="main"></main>
+  <nav class="tabbar" id="tabbar" role="tablist" aria-label="Hauptbereiche"></nav>
+
+  <section class="player" id="player" hidden aria-label="Übung läuft"></section>
+  <section class="finish" id="finish" hidden aria-label="Einheit beendet"></section>
+
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-label="Details"></aside>
+
+  <section class="intro" id="intro" hidden aria-label="Einrichtung"></section>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+
+<script>
+/* ============================================================
+   1 — Icons
+   ============================================================ */
+const IP = {
+  bell:'M12 3a5.5 5.5 0 0 0-5.5 5.5c0 4-1.5 5.5-1.5 5.5h14s-1.5-1.5-1.5-5.5A5.5 5.5 0 0 0 12 3Z|M10.3 18a2 2 0 0 0 3.4 0',
+  arrowR:'M4 12h15|M13 6l6 6-6 6',
+  arrowL:'M20 12H5|M11 18l-6-6 6-6',
+  chev:'M9 5l7 7-7 7',
+  clock:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z|M12 7v5l3.2 2',
+  flame:'M12 22c3.9 0 6.5-2.5 6.5-6 0-4.5-4.5-5.5-3.5-11C10 6 6.5 9 6.5 14c0 1.6.6 3 1.6 4M12 22c-2 0-3.4-1.4-3.4-3.2 0-2.3 2.2-2.9 1.8-5.8 2 1.6 3.3 3.3 3.3 5.5 0 2-1.1 3.5-1.7 3.5Z',
+  leaf:'M20 4c-8.5 0-15 3.5-15 10.5 0 2.4 1 4 1 4M5.5 19S8 9.5 19.5 5.5',
+  home:'M4 11.5 12 4l8 7.5|M6.5 10.2V20h11v-9.8',
+  courses:'M4 7.5 12 4l8 3.5-8 3.5-8-3.5Z|M4 12l8 3.5 8-3.5|M4 16.3l8 3.5 8-3.5',
+  chart:'M5 20V12|M12 20V5|M19 20v-5',
+  user:'M12 12.5a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z|M4.5 20c.9-3.6 3.9-5.5 7.5-5.5s6.6 1.9 7.5 5.5',
+  play:'M8 5.5v13l11-6.5-11-6.5Z',
+  pause:'M9.5 5.5v13|M14.5 5.5v13',
+  prev:'M18 6v12L9.5 12 18 6Z|M6 5.5v13',
+  next:'M6 6v12l8.5-6L6 6Z|M18 5.5v13',
+  dots:'M6 12h.01|M12 12h.01|M18 12h.01',
+  check:'M5 12.5 10 17.5 19 7',
+  x:'M6 6l12 12|M18 6 6 18',
+  plus:'M12 5v14|M5 12h14',
+  minus:'M5 12h14',
+  cog:'M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z|M19.4 14a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1v.2a2 2 0 0 1-4 0v-.1a1.6 1.6 0 0 0-2.8-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.5 13h-.2a2 2 0 0 1 0-4h.1A1.6 1.6 0 0 0 4.6 6.2l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 10 2.3a2 2 0 0 1 4 0v.2a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.2a2 2 0 0 1 0 4h-.2a1.6 1.6 0 0 0-1.2.9Z',
+  dumbbell:'M6.5 8.5v7|M3.5 10v4|M17.5 8.5v7|M20.5 10v4|M6.5 12h11',
+  band:'M5 8c5 6 9 6 14 0|M5 16c5-6 9-6 14 0',
+  chair:'M7 4v9h10V4|M7 13h10l1 7M7 13l-1 7|M6.5 16.5h11',
+  shoe:'M3 16.5h11.5c3 0 6.5-.6 6.5-2.5 0-1.6-2-1.8-4-2.6-1.6-.6-2.6-1.6-3.6-2.9-.6-.8-1.6-.5-1.6.4v1.6H3v6Z|M3 12.5h2',
+  gym:'M4 12h16|M6.5 7.5v9|M17.5 7.5v9|M3 10v4|M21 10v4',
+  wind:'M3 9h9a3 3 0 1 0-3-3|M3 14h12a3 3 0 1 1-3 3|M3 11.5h6',
+  book:'M5 5.5h5.5c1 0 1.5.6 1.5 1.5v12c0-.9-.5-1.5-1.5-1.5H5v-12Z|M19 5.5h-5.5c-1 0-1.5.6-1.5 1.5v12c0-.9.5-1.5 1.5-1.5H19v-12Z',
+  sparkle:'M12 4.5 13.6 9l4.5 1.6-4.5 1.6L12 16.7l-1.6-4.5L5.9 10.6 10.4 9 12 4.5Z|M18.5 16.5l.7 1.9 1.9.7-1.9.7-.7 1.9-.7-1.9-1.9-.7 1.9-.7.7-1.9Z',
+  spine:'M12 3.5v17|M8.5 6h7|M8 9.5h8|M8 13h8|M8.5 16.5h7',
+  heart:'M12 20s-7-4.4-7-9a3.9 3.9 0 0 1 7-2.4A3.9 3.9 0 0 1 19 11c0 4.6-7 9-7 9Z',
+  moon:'M20 14.2A8 8 0 0 1 9.8 4 8.2 8.2 0 1 0 20 14.2Z',
+  sun:'M12 16.5a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Z|M12 2.5v2|M12 19.5v2|M2.5 12h2|M19.5 12h2|M5.2 5.2 6.6 6.6|M17.4 17.4l1.4 1.4|M18.8 5.2l-1.4 1.4|M6.6 17.4l-1.4 1.4',
+  cal:'M5 6.5h14v13H5z|M5 10.5h14|M9 4v4|M15 4v4',
+  info:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z|M12 11v5|M12 7.6h.01',
+  trash:'M5 7h14|M9.5 7V5h5v2|M7 7l1 13h8l1-13',
+  shield:'M12 3.5 5.5 6v6c0 4 3 7 6.5 8.5 3.5-1.5 6.5-4.5 6.5-8.5V6L12 3.5Z|M9.5 12l1.8 1.9 3.4-3.6',
+  bolt:'M13.5 3 6 13.5h5L10.5 21 18 10.5h-5L13.5 3Z',
+  target:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z|M12 16.5a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Z|M12 13.2a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z',
+  ruler:'M4 9.5h16v5H4z|M8 9.5v2.5|M12 9.5v3.5|M16 9.5v2.5',
+  pencil:'M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17v3Z',
+  share:'M12 15V4|M8 7.5 12 3.5l4 4|M5 14v5.5h14V14'
+};
+function icon(name, cls){
+  const d = IP[name]; if(!d) return '';
+  const paths = d.split('|').map(p=>`<path d="${p}"/>`).join('');
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"${cls?` class="${cls}"`:''} aria-hidden="true">${paths}</svg>`;
+}
+const leafMark = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3C11 3 5 6.6 5 13.6c0 1.6.5 3 1.3 4.1C8.8 12 13 8.6 18 6.8c-4.3 2.6-7.6 6.3-9.4 11.4 1 .5 2.2.8 3.4.8 5.6 0 9-4.9 9-16Z"/></svg>';
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+/* ============================================================
+   2 — Panda-Rigs (alle in viewBox 0 0 320 240)
+   ============================================================ */
+const DK='var(--panda-dark)', LT='var(--panda-light)', SH='var(--panda-shade)',
+      PW='var(--paw)', PW2='var(--paw-2)', RS='var(--rose)';
+
+/* Kopf von vorn */
+function headFront(x,y,s=1){
+  const p=(dx,dy)=>[x+dx*s, y+dy*s];
+  const E=(dx,dy,rx,ry,fill,extra='')=>{const[a,b]=p(dx,dy);return `<ellipse cx="${a}" cy="${b}" rx="${rx*s}" ry="${ry*s}" fill="${fill}" ${extra}/>`;};
+  const rot=(deg,dx,dy)=>{const[a,b]=p(dx,dy);return `transform="rotate(${deg} ${a} ${b})"`;};
+  const path=(d,fill,stroke,w)=>`<path d="${d}" fill="${fill}" ${stroke?`stroke="${stroke}" stroke-width="${w*s}" stroke-linecap="round" stroke-linejoin="round"`:''}/>`;
+  const P=(dx,dy)=>p(dx,dy).map(v=>Math.round(v*10)/10).join(' ');
+  return `
+  <g class="p-head">
+    ${E(-30,-32,15,15,DK)}${E(30,-32,15,15,DK)}
+    ${E(-30,-32,7.5,7.5,SH)}${E(30,-32,7.5,7.5,SH)}
+    ${E(0,0,42,40,LT)}
+    ${E(-17,-3,13.5,16.5,DK,rot(-14,-17,-3))}
+    ${E(17,-3,13.5,16.5,DK,rot(14,17,-3))}
+    ${path(`M${P(-24,-2)} Q${P(-17,-9)} ${P(-10,-2)}`,'none',LT,2.8)}
+    ${path(`M${P(10,-2)} Q${P(17,-9)} ${P(24,-2)}`,'none',LT,2.8)}
+    ${E(0,15,18,12.5,SH,'opacity=".45"')}
+    ${path(`M${P(-6.5,7)} Q${P(0,3.5)} ${P(6.5,7)} Q${P(6,14)} ${P(0,14.5)} Q${P(-6,14)} ${P(-6.5,7)}Z`,DK)}
+    ${path(`M${P(0,14.5)} L${P(0,17)}`,'none',DK,2.2)}
+    ${path(`M${P(0,17)} Q${P(-5,21.5)} ${P(-9.5,18)}`,'none',DK,2.2)}
+    ${path(`M${P(0,17)} Q${P(5,21.5)} ${P(9.5,18)}`,'none',DK,2.2)}
+    ${E(-29,13,7.5,5.5,RS,'opacity=".4"')}${E(29,13,7.5,5.5,RS,'opacity=".4"')}
+  </g>`;
+}
+
+/* Kopf im Profil, dir=1 blickt nach rechts */
+function headSide(x,y,s=1,dir=1){
+  const p=(dx,dy)=>[x+dx*dir*s, y+dy*s];
+  const P=(dx,dy)=>p(dx,dy).map(v=>Math.round(v*10)/10).join(' ');
+  const E=(dx,dy,rx,ry,fill,extra='')=>{const[a,b]=p(dx,dy);return `<ellipse cx="${a}" cy="${b}" rx="${rx*s}" ry="${ry*s}" fill="${fill}" ${extra}/>`;};
+  const path=(d,fill,stroke,w)=>`<path d="${d}" fill="${fill}" ${stroke?`stroke="${stroke}" stroke-width="${w*s}" stroke-linecap="round" stroke-linejoin="round"`:''}/>`;
+  return `
+  <g class="p-head">
+    ${E(-20,-28,13,13,DK)}${E(-20,-28,6.5,6.5,SH)}
+    ${E(0,0,36,35,LT)}
+    ${E(12,-4,12,14,DK)}
+    ${path(`M${P(6,-3)} Q${P(12,-10)} ${P(18,-3)}`,'none',LT,2.6)}
+    ${E(26,8,14,11,LT)}
+    ${E(26,8,14,11,SH,'opacity=".35"')}
+    ${path(`M${P(32,2)} Q${P(38,4)} ${P(35,9)} Q${P(31,11)} ${P(30,5)}Z`,DK)}
+    ${path(`M${P(33,10)} Q${P(29,14.5)} ${P(24,12)}`,'none',DK,2)}
+    ${E(4,13,6.5,5,RS,'opacity=".35"')}
+  </g>`;
+}
+
+/* Gliedmaße als runde Linie */
+const limb=(d,w=22,cls='',extra='')=>`<path class="${cls}" d="${d}" fill="none" stroke="${DK}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" ${extra}/>`;
+/* Fußsohle mit Ballen */
+function sole(x,y,rx=15,ry=11,rot=0){
+  return `<g transform="rotate(${rot} ${x} ${y})">
+    <ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${PW}"/>
+    <ellipse cx="${x}" cy="${y+ry*.22}" rx="${rx*.42}" ry="${ry*.36}" fill="${PW2}" opacity=".55"/>
+    <circle cx="${x-rx*.5}" cy="${y-ry*.5}" r="${rx*.16}" fill="${PW2}" opacity=".55"/>
+    <circle cx="${x}" cy="${y-ry*.62}" r="${rx*.16}" fill="${PW2}" opacity=".55"/>
+    <circle cx="${x+rx*.5}" cy="${y-ry*.5}" r="${rx*.16}" fill="${PW2}" opacity=".55"/>
+  </g>`;
+}
+const dumbbell=(x,y,r=1)=>`<g><rect x="${x-13*r}" y="${y-3*r}" width="${26*r}" height="${6*r}" rx="${3*r}" fill="var(--ink-2)"/><rect x="${x-17*r}" y="${y-8*r}" width="${8*r}" height="${16*r}" rx="${3*r}" fill="var(--ink)"/><rect x="${x+9*r}" y="${y-8*r}" width="${8*r}" height="${16*r}" rx="${3*r}" fill="var(--ink)"/></g>`;
+
+/* ---------- Haltung: Sitz (Vorderansicht) ---------- */
+function rigSit(opt={}){
+  const hands = opt.hands||'knees';
+  const armL = hands==='ribs' ? 'M126 152 Q116 172 138 178' : hands==='head' ? 'M126 152 Q112 132 140 124' : 'M126 152 Q110 178 126 196';
+  const armR = hands==='ribs' ? 'M194 152 Q204 172 182 178' : hands==='head' ? 'M194 152 Q208 132 180 124' : 'M194 152 Q210 178 194 196';
+  const legs = opt.legs==='butterfly'
+    ? `<g class="p-knees">
+        <path d="M150 182 Q112 184 106 202 Q104 214 124 214 Q146 214 154 200Z" fill="${DK}"/>
+        <path d="M170 182 Q208 184 214 202 Q216 214 196 214 Q174 214 166 200Z" fill="${DK}"/>
+        ${sole(148,206,13,10,18)}${sole(172,206,13,10,-18)}
+      </g>`
+    : `<g class="p-knees">
+        <path d="M142 180 Q104 186 102 202 Q101 214 122 214 Q146 214 152 198Z" fill="${DK}"/>
+        <path d="M178 180 Q216 186 218 202 Q219 214 198 214 Q174 214 168 198Z" fill="${DK}"/>
+        ${sole(116,206,14,10,-8)}${sole(204,206,14,10,8)}
+      </g>`;
+  return `
+  ${legs}
+  <g class="p-upper">
+    <g class="p-torso">
+      <ellipse cx="160" cy="170" rx="50" ry="46" fill="${DK}"/>
+      <ellipse cx="160" cy="178" rx="34" ry="33" fill="${LT}"/>
+      <path d="M140 148 Q160 158 180 148" fill="none" stroke="${SH}" stroke-width="2" opacity=".35"/>
+    </g>
+    <g class="p-armL">${limb(armL,23)}</g>
+    <g class="p-armR">${limb(armR,23)}</g>
+    ${headFront(160,110,.96)}
+  </g>`;
+}
+
+/* ---------- Haltung: Stand (Vorderansicht) ---------- */
+function rigStand(opt={}){
+  const h = opt.hands||'down';
+  let armL='M130 132 Q118 158 128 182', armR='M190 132 Q202 158 192 182', extra='';
+  if(h==='shoulder'){ armL='M130 132 Q112 150 132 158'; armR='M190 132 Q208 150 188 158';
+    extra = dumbbell(132,158,.8)+dumbbell(188,158,.8); }
+  if(h==='reach'){ armL='M130 132 Q126 110 146 102'; armR='M190 132 Q194 110 174 102'; }
+  if(h==='front'){ armL='M130 132 Q124 156 142 160'; armR='M190 132 Q196 156 178 160';
+    extra = `<path class="p-band" d="M142 160 Q160 170 178 160" fill="none" stroke="var(--green)" stroke-width="6" stroke-linecap="round" opacity=".85"/>`; }
+  if(h==='row'){ armL='M130 138 Q122 162 134 178'; armR='M190 138 Q198 162 186 178';
+    extra = opt.band
+      ? `<path class="p-band" d="M134 180 Q160 216 186 180" fill="none" stroke="var(--green)" stroke-width="6" stroke-linecap="round" opacity=".85"/><rect x="146" y="210" width="28" height="7" rx="3.5" fill="var(--ink-2)"/>`
+      : dumbbell(134,180,.8)+dumbbell(186,180,.8); }
+  const chair = opt.chair ? `<g opacity=".9">
+      <rect x="196" y="156" width="56" height="10" rx="4" fill="var(--wood)"/>
+      <rect x="240" y="104" width="10" height="54" rx="4" fill="var(--wood)"/>
+      <rect x="200" y="164" width="8" height="48" rx="3" fill="var(--wood)"/>
+      <rect x="240" y="164" width="8" height="48" rx="3" fill="var(--wood)"/>
+    </g>`:'';
+  let legL='M144 172 Q140 194 142 210', legR='M176 172 Q180 194 178 210',
+      soleL=[142,214,14,9,0], soleR=[178,214,14,9,0], wall='';
+  if(opt.stance==='lunge'){
+    legL='M150 174 Q196 180 200 196'; legR='M168 174 Q126 196 96 206';
+    soleL=[204,206,13,9,10]; soleR=[92,210,13,9,-6];
+  }
+  if(opt.stance==='calf'){
+    legL='M150 174 Q188 186 204 198'; legR='M168 176 Q136 194 112 208';
+    soleL=[208,204,13,9,14]; soleR=[108,212,14,9,0];
+  }
+  return `
+  ${chair}${wall}
+  <g class="p-body">
+    <g class="p-legL">${limb(legL,22)}</g>
+    <g class="p-legR">${limb(legR,22)}</g>
+    ${sole(...soleL)}${sole(...soleR)}
+    <g class="p-upper">
+      <g class="p-torso">
+        <ellipse cx="160" cy="150" rx="44" ry="42" fill="${DK}"/>
+        <ellipse cx="160" cy="156" rx="29" ry="29" fill="${LT}"/>
+      </g>
+      <g class="p-armL">${limb(armL,20)}</g>
+      <g class="p-armR">${limb(armR,20)}</g>
+      ${headFront(160,92,.88)}
+    </g>
+  </g>
+  ${extra}`;
+}
+
+/* ---------- Haltung: Vierfüßler (Profil, Blick nach rechts) ---------- */
+function rigQuad(){
+  return `
+  <g class="p-hips">
+    <g class="p-legL">${limb('M104 166 Q96 190 104 208',21)}${sole(106,212,14,9,0)}</g>
+  </g>
+  <g class="p-upper">
+    <g class="p-torso">
+      <ellipse cx="156" cy="164" rx="60" ry="32" fill="${DK}"/>
+      <path d="M104 172 Q156 200 210 172 Q156 188 104 172Z" fill="${LT}" opacity=".9"/>
+      <ellipse cx="158" cy="176" rx="40" ry="18" fill="${LT}"/>
+    </g>
+    <g class="p-armR">${limb('M212 162 Q218 188 212 208',21)}</g>
+    ${sole(214,212,14,9,0)}
+    ${headSide(238,152,.9,1)}
+  </g>`;
+}
+
+/* ---------- Haltung: Rückenlage (Profil, Kopf links) ---------- */
+function rigSupine(opt={}){
+  const knees = opt.knees==='up'
+    ? `<g class="p-knees p-legR">${limb('M182 196 Q206 184 206 164',21)}${limb('M206 164 Q210 186 206 204',19)}${sole(206,210,13,8,0)}</g>`
+    : `<g class="p-knees p-legR">${limb('M182 196 Q208 190 216 176',21)}${limb('M216 176 Q222 192 218 206',19)}${sole(218,210,13,8,0)}</g>`;
+  return `
+  <g class="p-hips">
+    <g class="p-torso">
+      <ellipse cx="150" cy="196" rx="56" ry="25" fill="${DK}"/>
+      <ellipse cx="152" cy="190" rx="38" ry="16" fill="${LT}"/>
+    </g>
+    ${knees}
+    <g class="p-armR">${limb('M126 190 Q140 176 160 178',18)}</g>
+  </g>
+  ${headSide(96,188,.82,-1)}`;
+}
+
+/* ---------- Haltung: Bauchlage (Profil, Blick nach rechts) ---------- */
+function rigProne(){
+  return `
+  <g class="p-legL">${limb('M104 208 Q84 206 74 210',20)}${sole(72,210,12,8,0)}</g>
+  <g class="p-upper">
+    <g class="p-torso">
+      <ellipse cx="156" cy="204" rx="58" ry="22" fill="${DK}"/>
+      <ellipse cx="160" cy="210" rx="38" ry="13" fill="${LT}" opacity=".85"/>
+    </g>
+    <g class="p-armR">${limb('M196 198 Q206 206 204 214',19)}</g>
+    ${headSide(216,180,.84,1)}
+  </g>`;
+}
+
+/* ---------- Haltung: Laufen (Profil, Blick nach rechts) ---------- */
+function rigRun(opt={}){
+  const incline = opt.incline ? `<path d="M40 224 L286 168" stroke="var(--wood)" stroke-width="7" stroke-linecap="round" opacity=".8"/>
+     <path d="M40 224 L286 224 L286 168Z" fill="var(--wood)" opacity=".16"/>
+     <text x="250" y="204" font-family="var(--font-display)" font-size="13" fill="var(--ink-3)">8–10&#37;</text>`:'';
+  return `
+  ${incline}
+  <g class="p-body">
+    <g class="p-legL">${limb('M158 172 Q150 194 150 212',21)}${limb('M150 212 Q154 216 162 216',18)}</g>
+    <g class="p-legR">${limb('M162 172 Q174 192 172 210',21)}${limb('M172 210 Q178 214 186 214',18)}</g>
+    <g class="p-upper">
+      <g class="p-torso">
+        <ellipse cx="158" cy="150" rx="35" ry="40" fill="${DK}"/>
+        <ellipse cx="166" cy="156" rx="21" ry="28" fill="${LT}" opacity=".92"/>
+      </g>
+      <g class="p-armL">${limb('M156 140 Q140 152 146 164',18)}</g>
+      <g class="p-armR">${limb('M164 140 Q182 148 176 162',18)}</g>
+      ${headSide(172,104,.84,1)}
+    </g>
+  </g>`;
+}
+
+const RIGS = {
+  sit:rigSit, stand:rigStand, quad:rigQuad, supine:rigSupine, prone:rigProne, run:rigRun
+};
+
+/* ---------- Raum / Hintergrund ---------- */
+function scene(opt={}){
+  const night = opt.night;
+  return `
+  <defs>
+    <linearGradient id="gWall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="var(--room-1)"/><stop offset="1" stop-color="var(--room-2)"/>
+    </linearGradient>
+    <radialGradient id="gSun" cx="22%" cy="16%" r="62%">
+      <stop offset="0" stop-color="#FFF3D8" stop-opacity=".85"/><stop offset="1" stop-color="#FFF3D8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gLamp" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="var(--lantern)" stop-opacity=".55"/><stop offset="1" stop-color="var(--lantern)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="0" y="0" width="320" height="240" fill="url(#gWall)"/>
+  <rect x="0" y="0" width="320" height="240" fill="url(#gSun)"/>
+  <g opacity=".5">
+    <rect x="16" y="14" width="86" height="120" rx="6" fill="var(--room-1)" stroke="var(--wood)" stroke-width="3"/>
+    <path d="M59 14v120M16 54h86M16 94h86" stroke="var(--wood)" stroke-width="2.5" opacity=".85"/>
+  </g>
+  <g opacity=".62">
+    <rect x="236" y="26" width="62" height="62" rx="5" fill="var(--room-3)" stroke="var(--wood)" stroke-width="3"/>
+    <path d="M258 44q10-8 18 0-6 10-18 22M262 70h16" stroke="var(--ink-2)" stroke-width="3.4" fill="none" stroke-linecap="round" opacity=".7"/>
+  </g>
+  <g class="amb lamp" opacity=".8">
+    <circle cx="276" cy="150" r="30" fill="url(#gLamp)"/>
+    <rect x="266" y="130" width="20" height="26" rx="7" fill="var(--lantern)" opacity=".9"/>
+    <rect x="263" y="126" width="26" height="5" rx="2.5" fill="var(--wood)"/>
+    <rect x="272" y="156" width="8" height="8" rx="2" fill="var(--wood)"/>
+  </g>
+  <rect x="0" y="196" width="320" height="44" fill="var(--room-3)" opacity=".55"/>
+  <path d="M0 196h320" stroke="var(--wood)" stroke-width="2" opacity=".35"/>
+  <ellipse cx="160" cy="214" rx="104" ry="17" fill="var(--mat)"/>
+  <ellipse cx="160" cy="211" rx="104" ry="17" fill="var(--mat-2)" opacity=".55"/>
+  <ellipse cx="160" cy="210" rx="100" ry="15" fill="var(--mat)"/>
+  <g class="amb leafA" opacity=".95">
+    <path d="M-4 -6q46 14 60 44" stroke="var(--leaf)" stroke-width="3" fill="none" opacity=".55"/>
+    <path d="M10 6q16 0 22 12-14 4-22-12Z" fill="var(--leaf)" opacity=".75"/>
+    <path d="M28 18q16 2 20 16-14 2-20-16Z" fill="var(--leaf)" opacity=".6"/>
+    <path d="M44 34q14 4 16 18-13 0-16-18Z" fill="var(--leaf)" opacity=".5"/>
+  </g>
+  <g class="amb leafB" opacity=".95">
+    <path d="M324 -4q-44 10-58 40" stroke="var(--leaf)" stroke-width="3" fill="none" opacity=".5"/>
+    <path d="M310 8q-16 0-22 12 14 4 22-12Z" fill="var(--leaf)" opacity=".7"/>
+    <path d="M292 20q-16 2-20 16 14 2 20-16Z" fill="var(--leaf)" opacity=".55"/>
+  </g>
+  ${night?'<rect x="0" y="0" width="320" height="240" fill="#1A1610" opacity=".18"/>':''}`;
+}
+
+/* Vollständige Szene mit Panda */
+function pandaScene(pose, anim, opt={}){
+  const rig = (RIGS[pose]||rigSit)(opt);
+  return `<svg class="pv scene rig-${pose} ${anim?'anim-'+anim:''}" viewBox="0 0 320 240" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Panda zeigt die Übung">
+    ${scene(opt)}${rig}
+  </svg>`;
+}
+/* ============================================================
+   3 — Übungen
+   ============================================================ */
+const EX = {
+  'atem-rippen':{name:'Rippen-Atmung',pose:'sit',anim:'breathe',opt:{hands:'ribs'},sec:90,tag:'Atmung',equip:[],
+    short:'Lege die Hände seitlich an die unteren Rippen und atme so, dass sich die Rippen unter den Händen weiten.',
+    cue:'Die Rippen dürfen wandern.',
+    bIn:'Rippen weiten sich nach außen.', bOut:'Alles sinkt langsam zurück.',
+    steps:['Sitz aufrecht, Schultern locker, Hände flach an die unteren Rippenbögen.','Atme 4 Sekunden durch die Nase ein und schiebe die Rippen aktiv gegen deine Hände.','Atme 6 Sekunden durch den leicht geöffneten Mund aus, ohne in dich zusammenzusacken.'],
+    breathText:'4 Sekunden ein, 6 Sekunden aus. Die Ausatmung ist länger als die Einatmung – das beruhigt und lässt den Brustkorb weit werden.',
+    benefits:['Hält die Rippen-Wirbel-Gelenke beweglich – genau die Gelenke, die bei Morbus Bechterew gern versteifen.','Erhält die Atembreite (Thoraxexkursion).','Senkt die Muskelspannung rund um die Wirbelsäule.']},
+
+  'kinnnicken':{name:'Kinn-Nicken',pose:'sit',anim:'chintuck',sec:45,tag:'Haltung',equip:[],
+    short:'Schiebe das Kinn sanft nach hinten, als würdest du ein Doppelkinn machen. Halte kurz, dann löse.',
+    cue:'Kein Druck – nur schieben.',
+    bIn:'Kinn sanft zurück.', bOut:'Locker lassen.',
+    steps:['Sitz aufrecht, Blick geradeaus, Schultern tief.','Schiebe den Kopf waagerecht nach hinten – nicht nach unten kippen.','Halte 5 Sekunden, löse 5 Sekunden. Wiederhole ruhig.'],
+    breathText:'Ruhig weiteratmen, nicht die Luft anhalten. Ausatmen beim Zurückschieben.',
+    benefits:['Arbeitet direkt gegen den nach vorn wandernden Kopf.','Kräftigt die tiefen Nackenbeuger.','Nimmt Zug von Nacken und oberem Rücken.']},
+
+  'schulterkreisen':{name:'Schulterkreisen',pose:'sit',anim:'shoulders',sec:45,tag:'Mobilität',equip:[],
+    short:'Kreise die Schultern langsam nach hinten. Groß, rund und ohne Ruck.',
+    cue:'Groß und langsam kreisen.',
+    bIn:'Schultern heben.', bOut:'Schultern nach hinten sinken lassen.',
+    steps:['Arme hängen locker, Rücken lang.','Hebe die Schultern, ziehe sie nach hinten und lasse sie tief sinken.','8 bis 10 Kreise rückwärts, dann 4 vorwärts.'],
+    breathText:'Beim Heben einatmen, beim Sinken ausatmen.',
+    benefits:['Löst den Schultergürtel nach dem Liegen.','Öffnet den Brustkorb.','Gute Vorbereitung für alles, was danach kommt.']},
+
+  'nacken':{name:'Nacken lösen',pose:'sit',anim:'neck',sec:60,side:true,tag:'Dehnung',equip:[],
+    short:'Neige den Kopf zu einer Seite, bis du an der anderen Halsseite Zug spürst. Halte, dann wechsle.',
+    cue:'Nur so weit, wie es angenehm ist.',
+    bIn:'Aufrichten.', bOut:'Zur Seite sinken lassen.',
+    steps:['Sitz aufrecht, gegenüberliegende Schulter bewusst tief lassen.','Neige den Kopf langsam zur Seite, ohne ihn zu drehen.','20 Sekunden halten, aufrichten, Seite wechseln.'],
+    breathText:'Mit jeder Ausatmung ein Stück tiefer sinken lassen – ohne zu ziehen.',
+    benefits:['Entlastet die typischen Verspannungen bei aufgerichteter Haltung.','Hält die Halswirbelsäule seitlich beweglich.']},
+
+  'seitdehnung':{name:'Seitliche Dehnung',pose:'sit',anim:'sidebend',sec:60,side:true,tag:'Dehnung',equip:[],
+    short:'Sitz aufrecht, hebe einen Arm und neige dich sanft zur Seite. Atme ruhig weiter.',
+    cue:'Bleib ganz locker.',
+    bIn:'Streck dich sanft zur Seite.', bOut:'Lass die Flanke lang werden.',
+    steps:['Beide Sitzbeinhöcker bleiben auf der Unterlage.','Hebe den Arm der Gegenseite lang nach oben.','Neige dich zur Seite, 20 Sekunden halten, dann wechseln.'],
+    breathText:'In die gedehnte Flanke hineinatmen – dort entsteht der meiste Raum.',
+    benefits:['Dehnt die seitliche Rumpfkette und die Zwischenrippenmuskeln.','Hält die Seitneigung der Wirbelsäule erhalten – eine der ersten Bewegungen, die verloren geht.']},
+
+  'drehsitz':{name:'Sanfte Drehung',pose:'sit',anim:'twist',sec:60,side:true,tag:'Mobilität',equip:[],
+    short:'Drehe Brustkorb und Kopf langsam zu einer Seite. Das Becken bleibt ruhig stehen.',
+    cue:'Die Drehung kommt aus der Brust.',
+    bIn:'Aufrichten und wachsen.', bOut:'Eine Spur weiter drehen.',
+    steps:['Richte dich zuerst auf, als würdest du länger werden.','Drehe aus dem Brustkorb, nicht aus dem unteren Rücken.','20 Sekunden halten, zurück zur Mitte, Seite wechseln.'],
+    breathText:'Einatmen beim Aufrichten, ausatmen beim Drehen.',
+    benefits:['Erhält die Rotation der Brustwirbelsäule.','Mobilisiert die kleinen Wirbelgelenke ohne Stoß.']},
+
+  'arme-oeffnen':{name:'Arme öffnen',pose:'sit',anim:'open',sec:60,tag:'Mobilität',equip:[],
+    short:'Öffne die Arme weit zur Seite und führe sie wieder zusammen – im Takt deiner Atmung.',
+    cue:'Mach dich breit.',
+    bIn:'Arme öffnen, Brustbein hebt.', bOut:'Arme sinken lassen.',
+    steps:['Sitz aufrecht, Handflächen zeigen nach vorn.','Öffne die Arme weit, ziehe die Schulterblätter zueinander.','Führe sie langsam wieder nach vorn. 8 bis 10 Mal.'],
+    breathText:'Öffnen = einatmen, Schließen = ausatmen.',
+    benefits:['Öffnet die Brustmuskulatur, die bei Rundrücken verkürzt.','Aktiviert die Muskeln zwischen den Schulterblättern.']},
+
+  'schmetterling':{name:'Schmetterlingssitz',pose:'sit',anim:'butterfly',opt:{legs:'butterfly'},sec:45,tag:'Dehnung',equip:[],
+    short:'Bring die Fußsohlen zueinander, halte die Füße und lass die Knie locker nach außen sinken.',
+    cue:'Ganz ohne Druck.',
+    bIn:'Aufrichten.', bOut:'Knie sanft sinken lassen.',
+    steps:['Fußsohlen aneinander, Fersen angenehm weit vom Becken entfernt.','Richte den Rücken auf, Hände an den Füßen.','Lass die Knie mit jeder Ausatmung ein Stück weiter sinken. Nicht wippen.'],
+    breathText:'Ruhig und gleichmäßig. Die Knie folgen der Ausatmung.',
+    benefits:['Hält die Hüftgelenke beweglich – bei Morbus Bechterew oft früh betroffen.','Dehnt die Innenseite der Oberschenkel.']},
+
+  'katze-kuh':{name:'Katze & Kuh',pose:'quad',anim:'catcow',sec:60,tag:'Mobilität',equip:[],
+    short:'Im Vierfüßlerstand den Rücken abwechselnd rund machen und sanft ins Hohlkreuz sinken lassen.',
+    cue:'Wirbel für Wirbel.',
+    bIn:'Brust öffnen, Blick hebt.', bOut:'Rücken rund, Kinn zur Brust.',
+    steps:['Hände unter den Schultern, Knie unter den Hüften.','Ausatmen: Rücken rund, Kinn zur Brust.','Einatmen: Brustbein nach vorn, Blick leicht heben. 8 bis 10 Durchgänge.'],
+    breathText:'Die Bewegung folgt dem Atem, nicht umgekehrt. Langsam bleiben.',
+    benefits:['Mobilisiert die gesamte Wirbelsäule in Beugung und Streckung.','Wärmt die kleinen Wirbelgelenke auf, bevor es anstrengender wird.']},
+
+  'vierfuessler':{name:'Vierfüßler Arm & Bein',pose:'quad',anim:'birddog',sec:60,side:true,tag:'Kraft',equip:[],
+    short:'Strecke einen Arm nach vorn und das gegenüberliegende Bein nach hinten. Halte kurz, dann wechsle.',
+    cue:'Rücken bleibt ruhig.',
+    bIn:'Länger werden.', bOut:'Mitte fest, halten.',
+    steps:['Vierfüßlerstand, Bauch leicht angespannt.','Strecke rechten Arm und linkes Bein waagerecht aus.','5 Sekunden halten, absetzen, Seite wechseln. Das Becken bleibt waagerecht.'],
+    breathText:'Ausatmen beim Ausstrecken, gleichmäßig weiteratmen beim Halten.',
+    benefits:['Kräftigt die Rückenstrecker ohne Belastungsspitzen.','Trainiert die Rumpfstabilität, die die Wirbelsäule führt.']},
+
+  'sphinx':{name:'Sphinx',pose:'prone',anim:'sphinx',sec:50,tag:'Haltung',equip:[],
+    short:'In Bauchlage auf die Unterarme stützen und den Brustkorb sanft anheben. Schultern weg von den Ohren.',
+    cue:'Lang werden, nicht hochdrücken.',
+    bIn:'Brustbein hebt.', bOut:'Schultern sinken.',
+    steps:['Bauchlage, Unterarme parallel, Ellbogen unter den Schultern.','Schiebe das Brustbein nach vorn-oben, Nacken bleibt lang.','20 bis 30 Sekunden halten, dann langsam ablegen.'],
+    breathText:'Ruhig in den Bauch atmen. Bei Druck im unteren Rücken die Ellbogen weiter nach vorn schieben.',
+    benefits:['Die wichtigste Gegenbewegung zur Beugehaltung bei Morbus Bechterew.','Streckt die Brustwirbelsäule aktiv.','Dehnt die vordere Rumpfwand.']},
+
+  'rueckenstrecker':{name:'Rückenstrecker',pose:'prone',anim:'superman',sec:40,tag:'Kraft',equip:[],
+    short:'In Bauchlage Brustkorb und Beine ein Stück vom Boden lösen – klein und kontrolliert.',
+    cue:'Klein reicht völlig.',
+    bIn:'Länger werden.', bOut:'Halten und lösen.',
+    steps:['Bauchlage, Stirn auf einem Handtuch, Arme neben dem Körper.','Hebe Brustbein und Beine nur wenige Zentimeter.','3 Sekunden halten, ablegen. 8 bis 10 Wiederholungen.'],
+    breathText:'Ausatmen beim Heben, nicht pressen.',
+    benefits:['Kräftigt die Streckmuskulatur entlang der Wirbelsäule.','Hält die Aufrichtung im Alltag möglich.']},
+
+  'bruecke':{name:'Brücke',pose:'supine',anim:'bridge',sec:50,tag:'Kraft',equip:[],
+    short:'In Rückenlage die Füße aufstellen und das Becken Wirbel für Wirbel anheben.',
+    cue:'Wirbel für Wirbel abrollen.',
+    bIn:'Becken heben.', bOut:'Langsam abrollen.',
+    steps:['Rückenlage, Füße hüftbreit aufgestellt, Arme neben dem Körper.','Hebe das Becken, bis Knie, Hüfte und Schultern eine Linie bilden.','3 Sekunden halten, langsam abrollen. 8 bis 10 Wiederholungen.'],
+    breathText:'Ausatmen beim Heben, einatmen beim Ablegen.',
+    benefits:['Kräftigt Gesäß und hintere Kette – die Gegenspieler der verkürzten Hüftbeuger.','Mobilisiert die Lendenwirbelsäule schonend.']},
+
+  'knie-brust':{name:'Knie zur Brust',pose:'supine',anim:'kneehug',opt:{knees:'up'},sec:50,side:true,tag:'Dehnung',equip:[],
+    short:'Ziehe ein Knie ruhig zur Brust, das andere Bein bleibt lang. Dann wechseln.',
+    cue:'Der untere Rücken wird weit.',
+    bIn:'Einatmen und Platz machen.', bOut:'Knie näher ziehen.',
+    steps:['Rückenlage, ein Knie mit beiden Händen umfassen.','Ziehe es ruhig Richtung Brust, das gestreckte Bein bleibt am Boden.','20 Sekunden halten, Seite wechseln.'],
+    breathText:'Mit jeder Ausatmung ein Stück näher – ohne Zug im Knie.',
+    benefits:['Entlastet den unteren Rücken.','Dehnt Gesäß und Hüfte.','Angenehm zum Ausklang.']},
+
+  'kaefer':{name:'Käfer',pose:'supine',anim:'deadbug',sec:45,tag:'Kraft',equip:[],
+    short:'Rückenlage: gegenüberliegenden Arm und Bein langsam absenken, ohne dass der Rücken sich hebt.',
+    cue:'Rücken bleibt am Boden.',
+    bIn:'Sammeln.', bOut:'Absenken, Mitte hält.',
+    steps:['Rückenlage, Arme zur Decke, Knie über der Hüfte im rechten Winkel.','Senke rechten Arm und linkes Bein langsam ab.','Zurück zur Mitte, Seite wechseln. 6 bis 8 pro Seite.'],
+    breathText:'Ausatmen beim Absenken – das hält die Rippen unten und die Mitte stabil.',
+    benefits:['Trainiert die tiefe Bauchmuskulatur als natürliches Korsett.','Belastet die Wirbelsäule dabei kaum.']},
+
+  'aufrichten':{name:'Aufrichten an der Wand',pose:'stand',anim:'hold',sec:60,tag:'Haltung',equip:[],
+    short:'Mit Fersen, Gesäß und Schulterblättern an die Wand. Versuche, auch den Hinterkopf anzunähern.',
+    cue:'Dein täglicher Messpunkt.',
+    bIn:'Groß werden.', bOut:'Schultern sinken, Position halten.',
+    steps:['Fersen etwa eine Handbreit vor der Wand, Gesäß und Schulterblätter an der Wand.','Schiebe das Kinn zurück und nähere den Hinterkopf der Wand an.','30 Sekunden halten und ruhig weiteratmen.'],
+    breathText:'Ruhig weiteratmen. Nicht ins Hohlkreuz ausweichen.',
+    benefits:['Zeigt dir ehrlich, wie deine Aufrichtung heute ist.','Der Abstand Hinterkopf–Wand ist ein Wert, den auch Ärztinnen und Ärzte messen.']},
+
+  'marschieren':{name:'Marschieren',pose:'stand',anim:'march',sec:60,tag:'Aufwärmen',equip:[],
+    short:'Auf der Stelle marschieren, Arme locker mitschwingen lassen.',
+    cue:'Warm werden, nichts erzwingen.',
+    bIn:'Ruhig einatmen.', bOut:'Locker weiter.',
+    steps:['Aufrecht stehen, Knie abwechselnd auf Hüfthöhe heben.','Arme gegengleich mitschwingen lassen.','60 Sekunden in angenehmem Tempo.'],
+    breathText:'Gleichmäßig durch die Nase ein, durch den Mund aus.',
+    benefits:['Bringt Kreislauf und Gelenkflüssigkeit in Gang.','Ideal als erste Übung an steifen Morgen.']},
+
+  'stuhl-aufstehen':{name:'Aufstehen vom Stuhl',pose:'stand',anim:'squat',opt:{chair:true},sec:60,tag:'Kraft',equip:['stuhl'],
+    short:'Vom Stuhl aufstehen und wieder kontrolliert absetzen – ohne Schwung aus den Armen.',
+    cue:'Langsam runter ist die Arbeit.',
+    bIn:'Vorbereiten.', bOut:'Aufstehen.',
+    steps:['Sitz vorn auf der Stuhlkante, Füße hüftbreit.','Stehe ohne Schwung auf, Brustbein bleibt oben.','Setze dich in 3 Sekunden kontrolliert ab. 8 bis 12 Wiederholungen.'],
+    breathText:'Ausatmen beim Aufstehen, einatmen beim Absetzen.',
+    benefits:['Kräftigt Beine und Gesäß im Alltagsmuster.','Hält dich unabhängig – Aufstehen ist die Bewegung, die bei Steifigkeit zuerst schwerfällt.']},
+
+  'hantel-press':{name:'Schulterdrücken',pose:'stand',anim:'press',opt:{hands:'shoulder'},sec:50,tag:'Kraft',equip:['hanteln'],
+    short:'Kleine Hanteln auf Schulterhöhe, kontrolliert nach oben drücken und langsam absenken.',
+    cue:'Rippen bleiben unten.',
+    bIn:'Sammeln.', bOut:'Nach oben drücken.',
+    steps:['Aufrecht stehen, Hanteln auf Schulterhöhe, Ellbogen leicht vor dem Körper.','Drücke nach oben, ohne ins Hohlkreuz zu gehen.','Senke in 3 Sekunden ab. 10 bis 12 Wiederholungen.'],
+    breathText:'Ausatmen beim Drücken, einatmen beim Absenken.',
+    benefits:['Kräftigt Schultern und oberen Rücken.','Trainiert die Überkopfbeweglichkeit, die mit der Brustwirbelsäule zusammenhängt.']},
+
+  'hantel-rudern':{name:'Rudern vorgebeugt',pose:'stand',anim:'row',opt:{hands:'row'},sec:50,tag:'Kraft',equip:['hanteln'],
+    short:'Oberkörper aus der Hüfte nach vorn neigen, Rücken lang, Hanteln zu den Rippen ziehen.',
+    cue:'Ellbogen nach hinten.',
+    bIn:'Lang machen.', bOut:'Ziehen.',
+    steps:['Füße hüftbreit, Knie weich, Oberkörper aus der Hüfte nach vorn neigen.','Rücken bleibt gerade, Blick schräg nach unten.','Ziehe die Hanteln zu den unteren Rippen, Schulterblätter zueinander. 10 bis 12 Wiederholungen.'],
+    breathText:'Ausatmen beim Ziehen, einatmen beim Ablassen.',
+    benefits:['Kräftigt genau die Muskeln, die dich aufrecht halten.','Direkte Gegenarbeit zum Rundrücken.']},
+
+  'seitheben':{name:'Seitheben',pose:'stand',anim:'raise',opt:{hands:'row'},sec:45,tag:'Kraft',equip:['hanteln'],
+    short:'Hanteln mit leicht gebeugten Ellbogen bis Schulterhöhe seitlich anheben.',
+    cue:'Schultern bleiben tief.',
+    bIn:'Sammeln.', bOut:'Heben.',
+    steps:['Aufrecht stehen, Hanteln neben den Oberschenkeln.','Hebe die Arme seitlich bis Schulterhöhe – nicht höher.','Senke langsam ab. 10 bis 12 Wiederholungen.'],
+    breathText:'Ausatmen beim Heben.',
+    benefits:['Stabilisiert die Schultergelenke.','Hält die seitliche Armhebung frei.']},
+
+  'band-pullapart':{name:'Band auseinanderziehen',pose:'stand',anim:'pullapart',opt:{hands:'front'},sec:50,tag:'Kraft',equip:['band'],
+    short:'Band auf Brusthöhe vor dir halten und mit gestreckten Armen auseinanderziehen.',
+    cue:'Schulterblätter in die Tasche.',
+    bIn:'Sammeln.', bOut:'Auseinanderziehen.',
+    steps:['Band schulterbreit fassen, Arme auf Brusthöhe nach vorn.','Ziehe das Band auseinander, bis die Arme seitlich offen sind.','Langsam zurückführen. 12 bis 15 Wiederholungen.'],
+    breathText:'Ausatmen beim Ziehen, einatmen beim Zurückführen.',
+    benefits:['Kräftigt den oberen Rücken sehr gelenkschonend.','Eine der besten Übungen gegen nach vorn gezogene Schultern.']},
+
+  'band-rudern':{name:'Rudern mit Band',pose:'stand',anim:'row',opt:{hands:'row',band:true},sec:50,tag:'Kraft',equip:['band'],
+    short:'Band unter die Füße, Oberkörper leicht vorgeneigt, Ellbogen eng nach hinten ziehen.',
+    cue:'Ziehen, nicht reißen.',
+    bIn:'Lang machen.', bOut:'Ziehen.',
+    steps:['Band unter die Fußmitte, Enden in beide Hände.','Oberkörper leicht nach vorn neigen, Rücken lang.','Ziehe die Ellbogen eng am Körper nach hinten. 12 bis 15 Wiederholungen.'],
+    breathText:'Ausatmen beim Ziehen.',
+    benefits:['Kräftigt den gesamten Rücken ohne Gewichte.','Gut dosierbar – Spannung über den Abstand der Hände regeln.']},
+
+  'hueftbeuger':{name:'Hüftbeuger dehnen',pose:'stand',anim:'lunge',opt:{stance:'lunge'},sec:60,side:true,tag:'Dehnung',equip:[],
+    short:'Im Ausfallschritt das Becken sanft nach vorn schieben, bis die Leiste des hinteren Beins zieht.',
+    cue:'Becken aufrichten, dann schieben.',
+    bIn:'Aufrichten.', bOut:'Becken nach vorn schieben.',
+    steps:['Großer Schritt nach vorn, hinteres Knie auf einer weichen Unterlage.','Richte das Becken auf – Schambein Richtung Bauchnabel.','Schiebe das Becken sanft nach vorn. 30 Sekunden pro Seite.'],
+    breathText:'Tief und ruhig. Die Dehnung kommt mit der Ausatmung.',
+    benefits:['Der Hüftbeuger verkürzt bei Morbus Bechterew besonders schnell und zieht dich nach vorn.','Macht aufrechtes Stehen und Gehen wieder leichter.']},
+
+  'wade':{name:'Waden dehnen',pose:'stand',anim:'lunge',opt:{stance:'calf',hands:'reach'},sec:40,side:true,tag:'Dehnung',equip:[],
+    short:'Schrittstellung, hintere Ferse bleibt am Boden, Knie gestreckt.',
+    cue:'Ferse bleibt unten.',
+    bIn:'Einatmen.', bOut:'Sanft nach vorn lehnen.',
+    steps:['Hände an eine Wand, ein Bein weit nach hinten.','Hinteres Knie gestreckt, Ferse am Boden.','20 Sekunden halten, Seite wechseln.'],
+    breathText:'Ruhig weiteratmen.',
+    benefits:['Wichtig nach jedem Lauf.','Beugt Fersen- und Achillessehnenbeschwerden vor, die bei Morbus Bechterew häufig sind.']},
+
+  'geh-block':{name:'Gehen mit Steigung',pose:'run',anim:'walk',opt:{incline:true},sec:1200,tag:'Ausdauer',equip:['gym'],
+    short:'Laufband auf Steigung stellen und in ruhigem Tempo gehen. Oberkörper bleibt aufrecht, nicht am Griff festhalten.',
+    cue:'Aufrecht bleiben, locker atmen.',
+    bIn:'Ruhig einatmen.', bOut:'Gleichmäßig weiter.',
+    steps:['Steigung und Tempo einstellen, erste 3 Minuten flacher als geplant.','Aufrecht gehen, Arme locker schwingen, Hände weg vom Haltegriff.','Letzte 3 Minuten Steigung zurücknehmen und auslaufen.'],
+    breathText:'So atmen, dass du noch sprechen könntest. Das ist die richtige Intensität.',
+    benefits:['Ausdauer ohne Stoßbelastung für die Wirbelsäule.','Die Steigung kräftigt Gesäß und Waden und hält die Hüfte in Streckung.','Regelmäßige Ausdauer senkt nachweislich Entzündungsaktivität und Steifigkeit.']},
+
+  'lauf-block':{name:'Laufblock',pose:'run',anim:'run',sec:1500,tag:'Ausdauer',equip:[],
+    short:'Locker traben in einem Tempo, bei dem du dich noch unterhalten könntest.',
+    cue:'Locker bleiben, Schultern tief.',
+    bIn:'Ruhig einatmen.', bOut:'Gleichmäßiger Rhythmus.',
+    steps:['Erste 5 Minuten betont langsam – dein Körper braucht länger zum Warmwerden.','Aufrecht laufen, Blick nach vorn, Schultern locker.','Zum Schluss 3 Minuten auslaufen statt abrupt stehen zu bleiben.'],
+    breathText:'Gleichmäßiger Rhythmus, zum Beispiel drei Schritte ein, drei Schritte aus.',
+    benefits:['Hält Herz-Kreislauf und Stoffwechsel in Schwung.','Bewegung an der frischen Luft wirkt gegen Morgensteifigkeit am Folgetag.','Danach unbedingt dehnen – dafür sind die nächsten Übungen da.']},
+
+  'ausklang':{name:'Zur Ruhe kommen',pose:'sit',anim:'breathe',opt:{hands:'ribs'},sec:90,tag:'Atmung',equip:[],
+    short:'Sitz bequem, Augen zu wenn du magst, und lass die Ausatmung länger werden als die Einatmung.',
+    cue:'Du bist fertig. Bleib noch kurz.',
+    bIn:'Einatmen – 4.', bOut:'Ausatmen – 6.',
+    steps:['Bequemer Sitz, Hände auf den Oberschenkeln.','Atme 4 Sekunden ein und 6 Sekunden aus.','Bleib 8 bis 10 Atemzüge so sitzen.'],
+    breathText:'Die lange Ausatmung schaltet den Körper auf Erholung.',
+    benefits:['Senkt Muskelspannung und Schmerzempfinden.','Schließt die Einheit bewusst ab – dein Nervensystem merkt sich das.']}
+};
+
+/* ============================================================
+   4 — Programme
+   ============================================================ */
+const PROGRAMS = [
+  {id:'morgenflow',name:'Morgenflow',place:'home',icon:'sun',sub:'Steifigkeit aus der Nacht lösen',
+   items:['marschieren','schulterkreisen','kinnnicken','seitdehnung','drehsitz','katze-kuh','sphinx','aufrichten'],
+   note:'Der Klassiker bei Morbus Bechterew: erst warm werden, dann strecken. Geht auch direkt neben dem Bett.'},
+  {id:'atem',name:'Atem & Brustkorb',place:'home',icon:'wind',sub:'Rippen weit halten',
+   items:['atem-rippen','schulterkreisen','arme-oeffnen','seitdehnung','sphinx','ausklang'],
+   note:'Die Beweglichkeit des Brustkorbs entscheidet mit darüber, wie frei du atmest. Zwei- bis dreimal pro Woche.'},
+  {id:'ruecken',name:'Rücken & Wirbelsäule',place:'home',icon:'spine',sub:'Alle Richtungen einmal durch',
+   items:['katze-kuh','drehsitz','seitdehnung','vierfuessler','sphinx','rueckenstrecker','knie-brust'],
+   note:'Beugen, strecken, drehen, seitneigen – die Wirbelsäule braucht jede Richtung regelmäßig.'},
+  {id:'huefte',name:'Hüfte & Beine',place:'home',icon:'target',sub:'Gegen die Beugehaltung',
+   items:['marschieren','schmetterling','hueftbeuger','bruecke','knie-brust','wade'],
+   note:'Hüftbeuger dehnen, Gesäß kräftigen. Genau die Kombination, die dich aufrecht hält.'},
+  {id:'kraft-stuhl',name:'Kraft mit Stuhl & Hanteln',place:'home',icon:'dumbbell',sub:'Aufrichten braucht Kraft',
+   items:['marschieren','stuhl-aufstehen','hantel-rudern','hantel-press','seitheben','vierfuessler','knie-brust'],
+   note:'Zweimal pro Woche reicht. Lieber leichte Hanteln und sauber als schwer und verrissen.'},
+  {id:'band',name:'Band-Kraft',place:'home',icon:'band',sub:'Oberer Rücken, sehr schonend',
+   items:['schulterkreisen','band-pullapart','band-rudern','bruecke','arme-oeffnen','ausklang'],
+   note:'Das Band dosiert sich über den Abstand der Hände – ideal an Tagen mit wechselnder Tagesform.'},
+  {id:'abendfluss',name:'Abendfluss',place:'home',icon:'moon',sub:'Ruhig runterkommen',
+   items:['schmetterling','knie-brust','bruecke','nacken','ausklang'],
+   note:'Langsam und ohne Ehrgeiz. Wirkt gegen Nachtschmerz und hilft beim Einschlafen.'},
+  {id:'schub',name:'Sanfter Tag',place:'home',icon:'heart',sub:'Wenn es gerade viel ist',
+   items:['atem-rippen','nacken','knie-brust','schmetterling','ausklang'],
+   note:'Für Phasen mit erhöhter Entzündungsaktivität: nur Atmung, Lagerung und ganz sanfte Bewegung. Bewegung ja – Belastung nein.'},
+  {id:'gym-haltung',name:'Gym: Rücken & Haltung',place:'gym',icon:'gym',sub:'Warm-up, Kraft, Cool-down',
+   items:['geh-block','band-pullapart','hantel-rudern','hantel-press','stuhl-aufstehen','vierfuessler','hueftbeuger','wade'],
+   note:'Start auf dem Laufband, dann Zug- vor Druckübungen. Im Studio gilt dasselbe wie zu Hause: kontrolliert und ohne Stoß.',
+   runBlock:'geh-block'},
+  {id:'gym-mobility',name:'Gym: Mobility-Einheit',place:'gym',icon:'spine',sub:'Kurz, wenn die Zeit knapp ist',
+   items:['geh-block','katze-kuh','drehsitz','seitdehnung','hueftbeuger','ausklang'],
+   note:'Reicht als eigenständige Einheit an Tagen, an denen Krafttraining zu viel wäre.',
+   runBlock:'geh-block'},
+  {id:'lauf-band',name:'Laufband mit Steigung',place:'run',icon:'gym',sub:'Deine Steigung, dein Tempo',
+   items:['marschieren','hueftbeuger','geh-block','wade','knie-brust','ausklang'],
+   note:'Steigung statt Tempo: ordentlich anstrengend für Kreislauf und Beine, ohne Stoß auf die Wirbelsäule.',
+   runBlock:'geh-block'},
+  {id:'lauf-draussen',name:'Draußen joggen',place:'run',icon:'shoe',sub:'Locker traben, gut dehnen',
+   items:['marschieren','schulterkreisen','lauf-block','wade','hueftbeuger','knie-brust','ausklang'],
+   note:'Aufwärmen vor dem Losrennen und danach dehnen – bei Morbus Bechterew kühlt der Körper sonst steif aus.',
+   runBlock:'lauf-block'}
+];
+const PROG = Object.fromEntries(PROGRAMS.map(p=>[p.id,p]));
+
+const QUOTES = [
+  'Ein ruhiger Geist macht das Leben heller.',
+  'Bewegung ist die beste Entzündungsbremse.',
+  'Heute zählt nicht Leistung. Heute zählt, dass du da warst.',
+  'Jeder Wirbel, der sich bewegt, bleibt beweglich.',
+  'Kleine Schritte. Große Balance.',
+  'Steifigkeit mag keine Wiederholung – also wiederhole.',
+  'Atme weit, dann wird auch der Tag weiter.'
+];
+/* ============================================================
+   5 — Zustand
+   ============================================================ */
+const KEY='pandamo.v1';
+const DEFAULTS={
+  place:'home',
+  equip:{stuhl:true,hanteln:true,band:false},
+  minutes:15,
+  sound:true,
+  calm:false,
+  run:{mode:'band',speed:4.5,incline:9,minutes:20,outdoor:25},
+  plan:{1:'morgenflow',2:'kraft-stuhl',3:'lauf-band',4:'atem',5:'band',6:'lauf-draussen',0:'abendfluss'},
+  log:[],
+  measures:[],
+  intro:true
+};
+let S = load();
+function load(){
+  try{ const raw=localStorage.getItem(KEY); if(!raw) return structuredClone(DEFAULTS);
+    const v=JSON.parse(raw); return Object.assign(structuredClone(DEFAULTS), v,
+      {equip:Object.assign({},DEFAULTS.equip,v.equip||{}), run:Object.assign({},DEFAULTS.run,v.run||{}), plan:Object.assign({},DEFAULTS.plan,v.plan||{})});
+  }catch(e){ return structuredClone(DEFAULTS); }
+}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+
+const todayKey=(d=new Date())=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const DAYS=['So','Mo','Di','Mi','Do','Fr','Sa'];
+function greeting(){ const h=new Date().getHours();
+  if(h<11) return {t:'Guten Morgen',i:'sun'};
+  if(h<17) return {t:'Schön, dich zu sehen',i:'leaf'};
+  return {t:'Guten Abend',i:'moon'};
+}
+function streak(){
+  const done=new Set(S.log.map(l=>l.date));
+  let n=0, d=new Date();
+  if(!done.has(todayKey(d))) d.setDate(d.getDate()-1);
+  while(done.has(todayKey(d))){ n++; d.setDate(d.getDate()-1); }
+  return n;
+}
+const minutesTotal = () => Math.round(S.log.reduce((a,l)=>a+(l.min||0),0));
+const doneToday = () => S.log.some(l=>l.date===todayKey());
+
+/* Übungen eines Programms auflösen: Ausrüstung, Laufdauer, Zielzeit */
+const SUBS={'band-rudern':'hantel-rudern','band-pullapart':'arme-oeffnen','hantel-rudern':'band-rudern','hantel-press':'band-pullapart','seitheben':'arme-oeffnen','stuhl-aufstehen':'marschieren'};
+function hasEquip(ex){
+  return (ex.equip||[]).every(e=>{
+    if(e==='gym') return true;
+    return S.equip[e];
+  });
+}
+function resolveItems(prog, opts={}){
+  const seen=new Set(); let list=[];
+  for(const id of prog.items){
+    let ex=EX[id], key=id;
+    if(!hasEquip(ex) && SUBS[id] && hasEquip(EX[SUBS[id]])){ key=SUBS[id]; ex=EX[key]; }
+    if(!hasEquip(ex)) continue;
+    if(seen.has(key)) continue;
+    seen.add(key);
+    let sec=ex.sec;
+    if(key==='geh-block') sec=S.run.minutes*60;
+    if(key==='lauf-block') sec=S.run.outdoor*60;
+    list.push({id:key, ex, sec});
+  }
+  if(!opts.full && prog.place==='home'){
+    const target=S.minutes*60, tot=()=>list.reduce((a,i)=>a+i.sec,0);
+    while(list.length>4 && tot() > target*1.15) list.splice(Math.floor(list.length/2),1);
+    if(tot() < target*0.9){
+      const f=Math.min(1.9, target/tot());
+      list=list.map(i=>Object.assign({},i,{sec:Math.max(20, Math.round(i.sec*f/5)*5)}));
+    }
+  }
+  return list;
+}
+const progMinutes = p => Math.max(1, Math.round(resolveItems(p).reduce((a,i)=>a+i.sec,0)/60));
+function todayProgram(){
+  const place=S.place;
+  if(place==='gym') return PROG['gym-haltung'];
+  if(place==='run') return PROG[S.run.mode==='band'?'lauf-band':'lauf-draussen'];
+  const planned=PROG[S.plan[new Date().getDay()]];
+  if(planned && planned.place==='home') return planned;
+  return PROG['morgenflow'];
+}
+
+/* ============================================================
+   6 — Kleinteile
+   ============================================================ */
+const PLACES=[{id:'home',label:'Zuhause',ic:'home'},{id:'gym',label:'Gym',ic:'gym'},{id:'run',label:'Laufen',ic:'shoe'}];
+const ART={
+  mat:`<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="6" y="20" width="30" height="15" rx="7.5" fill="var(--wood)"/><ellipse cx="36" cy="27.5" rx="6" ry="7.5" fill="var(--paw)"/><ellipse cx="36" cy="27.5" rx="2.6" ry="3.4" fill="var(--paw-2)"/><path d="M30 20c2-6 7-8 12-7-1 5-5 8-9 8" fill="var(--leaf)"/><path d="M33 21c3-3 6-4 9-4" stroke="var(--green-2)" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+  leaves:`<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 40c0-10 4-17 13-21-2 12-6 18-13 21Z" fill="var(--leaf)"/><path d="M24 40c0-9-4-15-12-18 2 11 5 15 12 18Z" fill="var(--green)"/><path d="M24 41V27" stroke="var(--green-2)" stroke-width="1.6" stroke-linecap="round"/></svg>`,
+  growth:`<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="8" y="28" width="9" height="12" rx="3" fill="var(--paw)"/><rect x="20" y="22" width="9" height="18" rx="3" fill="var(--mat)"/><rect x="32" y="15" width="9" height="25" rx="3" fill="var(--green)"/><path d="M36.5 15c0-5 2-8 6-9-.5 6-2.5 8-6 9Z" fill="var(--leaf)"/><path d="M6 41h36" stroke="var(--wood)" stroke-width="2" stroke-linecap="round"/></svg>`
+};
+function toast(msg){
+  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(t._id); t._id=setTimeout(()=>t.classList.remove('show'),1900);
+}
+let AC=null;
+function chime(kind='step'){
+  if(!S.sound) return;
+  try{
+    AC = AC || new (window.AudioContext||window.webkitAudioContext)();
+    if(AC.state==='suspended') AC.resume();
+    const notes = kind==='done' ? [523.25,659.25,783.99] : [659.25];
+    notes.forEach((f,idx)=>{
+      const o=AC.createOscillator(), g=AC.createGain(), t0=AC.currentTime+idx*0.16;
+      o.type='sine'; o.frequency.value=f;
+      g.gain.setValueAtTime(0,t0); g.gain.linearRampToValueAtTime(.18,t0+.04);
+      g.gain.exponentialRampToValueAtTime(.0001,t0+.9);
+      o.connect(g); g.connect(AC.destination); o.start(t0); o.stop(t0+1);
+    });
+  }catch(e){}
+}
+const fmt = s => `${String(Math.floor(s/60)).padStart(2,'0')}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+
+/* ============================================================
+   7 — Bildschirm: Start
+   ============================================================ */
+function viewHome(){
+  const g=greeting(), p=todayProgram(), st=streak(), q=QUOTES[new Date().getDate()%QUOTES.length];
+  const atem=PROG['atem'];
+  const night=new Date().getHours()>=19;
+  return `
+  <header class="apphead">
+    <div>
+      <div class="wordmark"><span>Panda<em>mo</em></span>${leafMark}</div>
+      <div class="claim">Find your calm.</div>
+      <div class="greet">${g.t} ${icon(g.i)}</div>
+      <div class="greet-sub">Schön, dass du da bist.<br>Atme. Beweg dich. Bleib beweglich.</div>
+    </div>
+    <div class="head-right">
+      <button class="bell" data-go="fortschritt" aria-label="Fortschritt öffnen">${icon('bell')}${st>0?'<span class="dot"></span>':''}</button>
+      <div class="hand-note">Kleine Schritte<br>Große Balance ♡</div>
+    </div>
+  </header>
+
+  <div class="chips" role="group" aria-label="Wo trainierst du heute?">
+    ${PLACES.map(pl=>`<button class="chip" data-place="${pl.id}" aria-pressed="${S.place===pl.id}">${icon(pl.ic)}${pl.label}</button>`).join('')}
+    ${S.place==='run'?`<button class="chip" data-runmode="1" aria-pressed="false">${icon('cog')}${S.run.mode==='band'?`Laufband · ${String(S.run.speed).replace('.',',')} km/h · ${S.run.incline}%`:`Draußen · ${S.run.outdoor} Min`}</button>`:''}
+  </div>
+
+  <div class="stack" style="margin-top:14px">
+    <button class="hero" data-start="${p.id}">
+      <div class="hero-scene">${pandaScene(p.place==='run'?'run':'sit', p.place==='run'?(S.run.mode==='band'&&p.id==='lauf-band'?'walk':'run'):'breathe', {hands:'ribs',night,incline:p.id==='lauf-band'})}</div>
+      <div class="hero-body">
+        <h2>${esc(p.name)}</h2>
+        <p>${esc(p.sub)}.</p>
+        <span class="btn">Jetzt starten ${icon('arrowR')}</span>
+      </div>
+    </button>
+
+    <div class="tiles">
+      <button class="tile" data-start="${p.id}">
+        <span class="tile-ic">${ART.mat}</span>
+        <h3>Tagesprogramm</h3>
+        <p>Deine heutige Einheit</p>
+        <span class="tile-foot"><span class="meta">${icon('clock')}<span>${progMinutes(p)} Min</span></span>${icon('chev')}</span>
+      </button>
+      <button class="tile" data-start="atem">
+        <span class="tile-ic">${ART.leaves}</span>
+        <h3>Atemübungen</h3>
+        <p>Brustkorb weit halten</p>
+        <span class="tile-foot"><span class="meta">${icon('clock')}<span>${progMinutes(atem)} Min</span></span>${icon('chev')}</span>
+      </button>
+      <button class="tile" data-go="fortschritt">
+        <span class="tile-ic">${ART.growth}</span>
+        <h3>Fortschritt</h3>
+        <p>Dranbleiben und beweglich werden</p>
+        <span class="tile-foot"><span class="meta">${icon('flame')}<span>${st} Tage</span></span>${icon('chev')}</span>
+      </button>
+    </div>
+
+    <div class="sec"><h3>Heute passend</h3><button class="more" data-go="kurse">Alle Kurse</button></div>
+    ${suggestions(p).map(x=>rowProgram(x, x.id===p.id)).join('')}
+
+    <div class="quote">
+      <div class="quote-scene"><svg viewBox="0 0 320 120" preserveAspectRatio="none" aria-hidden="true">
+        <rect width="320" height="120" fill="var(--card-2)"/>
+        <circle cx="258" cy="34" r="19" fill="var(--lantern)" opacity=".45"/>
+        <path d="M0 96q40-26 80-8t80-14 80 4 80-16v54H0Z" fill="var(--mat)" opacity=".25"/>
+        <path d="M0 108q46-18 92-4t92-10 136 8v18H0Z" fill="var(--green)" opacity=".16"/>
+        <g opacity=".5"><path d="M6 10q26 6 34 26" stroke="var(--leaf)" stroke-width="2.4" fill="none"/><path d="M14 16q12 0 16 9-11 3-16-9Z" fill="var(--leaf)"/><path d="M28 28q12 2 15 12-10 1-15-12Z" fill="var(--leaf)"/></g>
+      </svg></div>
+      <div class="quote-body">
+        <p>„${esc(q)}“</p>
+        <div class="quote-rule"></div>
+        <span>Pandamo</span>
+      </div>
+    </div>
+    <p class="disclaimer">Pandamo ersetzt keine ärztliche Behandlung oder Physiotherapie. Bewegung soll ziehen dürfen, aber nicht schmerzen – bei akutem Schub, neuen Schmerzen oder nach einer OP vorher Rücksprache halten.</p>
+  </div>`;
+}
+function suggestions(today){
+  const list = PROGRAMS.filter(p=>p.place===S.place);
+  const rest = PROGRAMS.filter(p=>p.place==='home' && !list.includes(p));
+  return [...list, ...rest].filter(p=>p.id!==today.id).slice(0,3);
+}
+function rowProgram(p, isToday){
+  const done = S.log.some(l=>l.date===todayKey() && l.progId===p.id);
+  return `<button class="row ${isToday?'today':''} ${done?'done':''}" data-start="${p.id}">
+    <span class="row-ic">${done?icon('check'):icon(p.icon)}</span>
+    <span class="row-main">
+      <h4>${esc(p.name)}</h4>
+      <p>${esc(p.sub)}</p>
+      <span class="row-meta">
+        <span class="pill">${progMinutes(p)} Min</span>
+        <span class="pill">${resolveItems(p).length} Übungen</span>
+        ${isToday?'<span class="pill green">Heute</span>':''}
+        ${done?'<span class="pill green">Geschafft</span>':''}
+      </span>
+    </span>
+    <span class="row-go">${icon('chev')}</span>
+  </button>`;
+}
+
+/* ============================================================
+   8 — Bildschirm: Kurse
+   ============================================================ */
+function viewKurse(){
+  const groups=[
+    {key:'home',title:'Zuhause',hint:'Stuhl, kleine Hanteln, Band – mehr braucht es nicht.'},
+    {key:'gym',title:'Im Studio',hint:'Laufband zum Warmwerden, danach Kraft.'},
+    {key:'run',title:'Laufen',hint:'Immer mit Aufwärmen und Dehnen drumherum.'}
+  ];
+  return `
+  <header class="apphead"><div>
+    <h1 style="font-family:var(--font-display);font-size:28px">Kurse</h1>
+    <div class="greet-sub">Such dir aus, was heute passt. Jede Einheit lässt sich jederzeit pausieren.</div>
+  </div></header>
+  ${groups.map(g=>`
+    <div class="sec"><h3>${g.title}</h3></div>
+    <p class="greet-sub" style="margin:-4px 2px 10px">${g.hint}</p>
+    <div class="stack">${PROGRAMS.filter(p=>p.place===g.key).map(p=>rowProgram(p,false)).join('')}</div>
+  `).join('')}
+  <div class="sec"><h3>Einzelne Übungen</h3></div>
+  <div class="stack" style="padding-bottom:6px">
+    ${Object.entries(EX).filter(([,e])=>e.tag!=='Ausdauer').map(([id,e])=>`
+      <button class="row" data-ex="${id}">
+        <span class="row-ic">${icon(tagIcon(e.tag))}</span>
+        <span class="row-main"><h4>${esc(e.name)}</h4><p>${esc(e.short)}</p>
+          <span class="row-meta"><span class="pill">${e.tag}</span><span class="pill">${e.sec<60?e.sec+' Sek':Math.round(e.sec/60)+' Min'}</span>${(e.equip||[]).map(q=>`<span class="pill amber">${q==='stuhl'?'Stuhl':q==='hanteln'?'Hanteln':q==='band'?'Band':'Studio'}</span>`).join('')}</span>
+        </span>
+        <span class="row-go">${icon('chev')}</span>
+      </button>`).join('')}
+  </div>`;
+}
+const tagIcon = t => ({'Atmung':'wind','Mobilität':'spine','Dehnung':'leaf','Kraft':'dumbbell','Haltung':'target','Aufwärmen':'bolt','Ausdauer':'shoe'}[t]||'leaf');
+/* ============================================================
+   9 — Bildschirm: Fortschritt
+   ============================================================ */
+function lastDays(n){
+  const out=[]; for(let i=n-1;i>=0;i--){ const d=new Date(); d.setDate(d.getDate()-i); out.push(d); } return out;
+}
+function barChart(){
+  const days=lastDays(14);
+  const vals=days.map(d=>{ const k=todayKey(d); return S.log.filter(l=>l.date===k).reduce((a,l)=>a+(l.min||0),0); });
+  const max=Math.max(20, ...vals);
+  const W=320,H=112, bw=W/14, pad=18;
+  const bars=vals.map((v,i)=>{
+    const h=Math.max(v>0?3:0,(v/max)*(H-pad-16));
+    const x=i*bw+bw*.22, y=H-pad-h;
+    return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(bw*.56).toFixed(1)}" height="${h.toFixed(1)}" rx="3" fill="${v>0?'var(--green)':'var(--card-3)'}"/>`;
+  }).join('');
+  const ticks=days.map((d,i)=>i%3===0?`<text class="ct" x="${(i*bw+bw/2).toFixed(1)}" y="${H-5}" text-anchor="middle">${d.getDate()}.</text>`:'').join('');
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Minuten pro Tag in den letzten 14 Tagen">
+    <line x1="0" y1="${H-pad}" x2="${W}" y2="${H-pad}" stroke="var(--line)" stroke-width="1"/>
+    <text class="ct" x="0" y="12">${max} Min</text>
+    ${bars}${ticks}</svg>`;
+}
+function stiffChart(){
+  const pts=S.log.filter(l=>typeof l.stiff==='number').slice(-14);
+  if(pts.length<2) return `<div class="empty">Trag nach zwei Einheiten deine Morgensteifigkeit ein – dann zeigt Pandamo dir hier die Kurve.</div>`;
+  const W=320,H=112,pad=20, max=Math.max(60,...pts.map(p=>p.stiff));
+  const X=i=>pts.length===1?W/2:(i/(pts.length-1))*(W-12)+6;
+  const Y=v=>H-pad-(v/max)*(H-pad-16);
+  const d=pts.map((p,i)=>`${i?'L':'M'}${X(i).toFixed(1)} ${Y(p.stiff).toFixed(1)}`).join(' ');
+  const area=`${d} L${X(pts.length-1).toFixed(1)} ${H-pad} L${X(0).toFixed(1)} ${H-pad}Z`;
+  const dots=pts.map((p,i)=>`<circle cx="${X(i).toFixed(1)}" cy="${Y(p.stiff).toFixed(1)}" r="${i===pts.length-1?4:2.6}" fill="var(--green)"/>`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Morgensteifigkeit in Minuten, letzte ${pts.length} Einheiten">
+    <defs><linearGradient id="gArea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="var(--green)" stop-opacity=".28"/><stop offset="1" stop-color="var(--green)" stop-opacity="0"/></linearGradient></defs>
+    <line x1="0" y1="${H-pad}" x2="${W}" y2="${H-pad}" stroke="var(--line)" stroke-width="1"/>
+    <line x1="0" y1="${Y(max/2).toFixed(1)}" x2="${W}" y2="${Y(max/2).toFixed(1)}" stroke="var(--line-2)" stroke-width="1" stroke-dasharray="3 4"/>
+    <path d="${area}" fill="url(#gArea)"/>
+    <path d="${d}" fill="none" stroke="var(--green)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    ${dots}
+    <text class="ct" x="0" y="12">${max} Min</text>
+    <text class="ct" x="0" y="${Y(max/2)-4}">${Math.round(max/2)}</text>
+    <text class="ct" x="${W}" y="${H-5}" text-anchor="end">zuletzt: ${pts[pts.length-1].stiff} Min</text>
+  </svg>`;
+}
+function viewFortschritt(){
+  const st=streak(), total=minutesTotal();
+  const wk=lastDays(7);
+  const thisWeek=wk.reduce((a,d)=>a+S.log.filter(l=>l.date===todayKey(d)).reduce((b,l)=>b+(l.min||0),0),0);
+  const m=S.measures.slice(-1)[0];
+  return `
+  <header class="apphead"><div>
+    <h1 style="font-family:var(--font-display);font-size:28px">Fortschritt</h1>
+    <div class="greet-sub">Bei Morbus Bechterew zählt Regelmäßigkeit mehr als Intensität. Darum steht hier die Reihe vorn.</div>
+  </div></header>
+  <div class="stack">
+    <div class="stat-grid">
+      <div class="stat"><div class="k">Aktuelle Reihe</div><div class="v">${st} <small>${st===1?'Tag':'Tage'}</small></div><div class="sub">${st>0?'Weiter so – morgen wieder.':'Heute ist ein guter Start.'}</div></div>
+      <div class="stat"><div class="k">Diese Woche</div><div class="v">${thisWeek} <small>Min</small></div><div class="sub">Ziel: 5×/Woche bewegen</div></div>
+      <div class="stat"><div class="k">Einheiten</div><div class="v">${S.log.length}</div><div class="sub">insgesamt</div></div>
+      <div class="stat"><div class="k">Gesamtzeit</div><div class="v">${Math.floor(total/60)} <small>Std ${total%60} Min</small></div><div class="sub">seit dem Start</div></div>
+    </div>
+
+    <div class="week" aria-label="Letzte sieben Tage">
+      ${wk.map(d=>{const k=todayKey(d), on=S.log.some(l=>l.date===k), isT=k===todayKey();
+        return `<div class="day ${on?'on':''} ${isT?'today':''}"><span>${DAYS[d.getDay()]}</span><i>${on?icon('check'):icon('leaf')}</i></div>`;}).join('')}
+    </div>
+
+    <div class="chartbox">
+      <header><h4>Minuten pro Tag</h4><span class="hint">letzte 14 Tage</span></header>
+      ${barChart()}
+      <div class="legend"><span><i style="background:var(--green)"></i>trainiert</span><span><i style="background:var(--card-3)"></i>Pausentag</span></div>
+    </div>
+
+    <div class="chartbox">
+      <header><h4>Morgensteifigkeit</h4><span class="hint">weniger ist besser</span></header>
+      ${stiffChart()}
+    </div>
+
+    <div class="sec"><h3>Messwerte</h3><button class="more" data-sheet="measure">Eintragen</button></div>
+    <div class="stat-grid">
+      <div class="stat"><div class="k">Hinterkopf–Wand</div><div class="v">${m&&m.wall!=null?m.wall:'–'} <small>cm</small></div><div class="sub">an der Wand gemessen, kleiner ist besser</div></div>
+      <div class="stat"><div class="k">Atembreite</div><div class="v">${m&&m.chest!=null?String(m.chest).replace('.',','):'–'} <small>cm</small></div><div class="sub">Brustumfang ein minus aus</div></div>
+    </div>
+    <p class="disclaimer">Beide Werte werden auch in der ärztlichen Verlaufskontrolle erhoben. Miss sie etwa alle vier Wochen zur gleichen Tageszeit – dann sind sie vergleichbar und du kannst sie zum Termin mitnehmen.</p>
+  </div>`;
+}
+
+/* ============================================================
+   10 — Bildschirm: Profil
+   ============================================================ */
+function opt(o){
+  return `<div class="opt">
+    <span class="oic">${icon(o.ic)}</span>
+    <span class="om"><b>${o.title}</b>${o.sub?`<span>${o.sub}</span>`:''}</span>
+    ${o.right||''}
+  </div>`;
+}
+const sw=(key,on)=>`<button class="switch" role="switch" aria-checked="${on}" data-toggle="${key}" aria-label="${key}"></button>`;
+const stepper=(key,label)=>`<span class="stepper"><button data-step="${key}:-1" aria-label="weniger">−</button><b>${label}</b><button data-step="${key}:1" aria-label="mehr">+</button></span>`;
+function viewProfil(){
+  const st=streak();
+  return `
+  <header class="apphead"><div>
+    <h1 style="font-family:var(--font-display);font-size:28px">Profil</h1>
+    <div class="greet-sub">Stell Pandamo auf deinen Alltag ein.</div>
+  </div></header>
+  <div class="stack">
+    <div class="profile-head">
+      <span class="avatar"><svg viewBox="106 56 108 108" aria-hidden="true">${headFront(160,112,1.06)}</svg></span>
+      <div><h3>Deine Übung</h3><p>${S.log.length} Einheiten · ${minutesTotal()} Minuten · ${st} Tage Reihe</p></div>
+    </div>
+
+    <div class="sec"><h3>Training</h3></div>
+    <div class="group">
+      ${opt({ic:'home',title:'Standard-Ort',sub:'Womit startet die App?',right:''})}
+      <div class="opt" style="padding-top:0"><div class="seg-ctl" style="width:100%">
+        ${PLACES.map(p=>`<button data-place="${p.id}" aria-pressed="${S.place===p.id}">${p.label}</button>`).join('')}
+      </div></div>
+      ${opt({ic:'clock',title:'Dauer zu Hause',sub:'Längere Programme werden gekürzt',right:stepper('minutes',S.minutes+' Min')})}
+      ${opt({ic:'chair',title:'Stuhl vorhanden',sub:'Für Aufstehen und Abstützen',right:sw('stuhl',S.equip.stuhl)})}
+      ${opt({ic:'dumbbell',title:'Mini-Hanteln',sub:'Rudern, Drücken, Seitheben',right:sw('hanteln',S.equip.hanteln)})}
+      ${opt({ic:'band',title:'Sportband',sub:'Sehr gelenkschonende Kraftübungen',right:sw('band',S.equip.band)})}
+    </div>
+
+    <div class="sec"><h3>Laufen</h3></div>
+    <div class="group">
+      <div class="opt"><div class="seg-ctl" style="width:100%">
+        <button data-runmode-set="band" aria-pressed="${S.run.mode==='band'}">Laufband</button>
+        <button data-runmode-set="out" aria-pressed="${S.run.mode==='out'}">Draußen</button>
+      </div></div>
+      ${opt({ic:'gym',title:'Steigung',sub:'Dein Bereich: 8 bis 10 Prozent',right:stepper('incline',S.run.incline+' %')})}
+      ${opt({ic:'bolt',title:'Tempo',sub:'Gehen mit Steigung statt schnell laufen',right:stepper('speed',String(S.run.speed).replace('.',',')+' km/h')})}
+      ${opt({ic:'clock',title:'Dauer Laufband',sub:'Hauptteil ohne Auf- und Abwärmen',right:stepper('runmin',S.run.minutes+' Min')})}
+      ${opt({ic:'shoe',title:'Dauer draußen',sub:'Lockeres Traben',right:stepper('outmin',S.run.outdoor+' Min')})}
+    </div>
+
+    <div class="sec"><h3>Wochenplan</h3></div>
+    <div class="group">
+      ${[1,2,3,4,5,6,0].map(d=>`<div class="opt">
+        <span class="oic">${icon('cal')}</span>
+        <span class="om"><b>${['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'][d]}</b></span>
+        <select data-plan="${d}" style="max-width:52%;background:var(--card-2);border:0;border-radius:12px;padding:8px 10px;font-size:13px;font-weight:700">
+          ${PROGRAMS.map(p=>`<option value="${p.id}" ${S.plan[d]===p.id?'selected':''}>${esc(p.name)}</option>`).join('')}
+        </select>
+      </div>`).join('')}
+    </div>
+
+    <div class="sec"><h3>App</h3></div>
+    <div class="group">
+      ${opt({ic:'sparkle',title:'Ton bei Übungswechsel',sub:'Kurzer, leiser Klang',right:sw('sound',S.sound)})}
+      ${opt({ic:'heart',title:'Bewegung reduzieren',sub:'Panda hält die Position still',right:sw('calm',S.calm)})}
+      ${opt({ic:'ruler',title:'Messwerte eintragen',sub:'Wandabstand und Atembreite',right:`<button class="btn soft sm" data-sheet="measure">Öffnen</button>`})}
+      ${opt({ic:'shield',title:'Gesundheitshinweis',sub:'Wann du pausieren solltest',right:`<button class="btn soft sm" data-sheet="safety">Lesen</button>`})}
+      ${opt({ic:'trash',title:'Daten zurücksetzen',sub:'Alles bleibt nur auf diesem Gerät',right:`<button class="btn soft sm danger" data-reset="1">Löschen</button>`})}
+    </div>
+    <p class="disclaimer">Alle Daten liegen ausschließlich lokal in diesem Browser. Pandamo sendet nichts an einen Server und ersetzt keine ärztliche Behandlung oder Physiotherapie.</p>
+  </div>`;
+}
+/* ============================================================
+   11 — Player
+   ============================================================ */
+const $ = s => document.querySelector(s);
+const playerEl=$('#player'), finishEl=$('#finish'), screenEl=$('#screen'), sheetEl=$('#sheet'), scrimEl=$('#scrim');
+let SESSION=null, TICK=null;
+const RING=2*Math.PI*42;
+
+function startSession(progId){
+  const prog=PROG[progId]; if(!prog) return;
+  const items=resolveItems(prog);
+  if(!items.length){ toast('Für dieses Programm fehlt die Ausrüstung'); return; }
+  SESSION={prog, items, i:0, left:items[0].sec, running:true, elapsed:0, total:0, phase:''};
+  renderPlayer();
+  playerEl.hidden=false;
+  requestAnimationFrame(()=>playerEl.classList.add('open'));
+  clearInterval(TICK); TICK=setInterval(tick,1000);
+  chime('step');
+}
+function closePlayer(){
+  clearInterval(TICK); TICK=null;
+  playerEl.classList.remove('open');
+  setTimeout(()=>{ playerEl.hidden=true; playerEl.innerHTML=''; },320);
+  SESSION=null;
+}
+function renderPlayer(){
+  const s=SESSION, it=s.items[s.i], ex=it.ex;
+  const isRun = ex.tag==='Ausdauer';
+  const opts=Object.assign({},ex.opt||{},{night:new Date().getHours()>=19});
+  const tags=[];
+  if(ex.side) tags.push('<span class="pill">je Seite</span>');
+  (ex.equip||[]).forEach(q=>tags.push(`<span class="pill amber">${q==='stuhl'?'Stuhl':q==='hanteln'?'Hanteln':q==='band'?'Band':'Studio'}</span>`));
+  if(it.id==='geh-block') tags.push(`<span class="pill green">${String(S.run.speed).replace('.',',')} km/h · ${S.run.incline}%</span>`);
+  return void (playerEl.innerHTML=`
+  <div class="player-head">
+    <button class="circ" data-player-close="1" aria-label="Einheit verlassen">${icon('arrowL')}</button>
+    <div class="player-title"><h2>${esc(s.prog.name)} ${leafMark}</h2><p>Übung ${s.i+1} von ${s.items.length}</p></div>
+    <button class="circ" data-sheet="session" aria-label="Übersicht der Einheit">${icon('dots')}</button>
+  </div>
+  <div class="segbar" aria-hidden="true">
+    ${s.items.map((_,k)=>`<span class="seg ${k<s.i?'done':''} ${k===s.i?'now':''}"><i id="seg${k}"></i></span>`).join('')}
+  </div>
+  <div class="stage">
+    ${pandaScene(ex.pose, ex.anim, opts).replace('class="pv scene', `class="pv scene${s.running?'':' paused'}`)}
+    <div class="cue">${esc(ex.cue)}</div>
+    <div class="bubble"><b id="bPhase">${leafMark} Einatmen</b><span id="bText">${esc(ex.bIn)}</span></div>
+    ${tags.length?`<div class="stage-tag">${tags.join('')}</div>`:''}
+  </div>
+  <div class="ex-card">
+    <div class="ex-text">
+      <h3>${esc(ex.name)}</h3>
+      <p>${esc(ex.short)}</p>
+      <div class="ex-cue">${leafMark}<em>${esc(isRun?'In deinem Tempo. Du musst nichts beweisen.':ex.cue)}</em></div>
+    </div>
+    <div class="ring">
+      <svg viewBox="0 0 96 96" aria-hidden="true">
+        <circle class="bg" cx="48" cy="48" r="42"/>
+        <circle class="fg" id="ringFg" cx="48" cy="48" r="42" stroke-dasharray="${RING.toFixed(1)}" stroke-dashoffset="0"/>
+      </svg>
+      <div class="ring-in">
+        <span class="leaf">${leafMark}</span>
+        <b id="tTime">${fmt(s.left)}</b>
+        <span>${ex.tag==='Kraft'?'Wiederholen':'Halten'}</span>
+      </div>
+    </div>
+  </div>
+  <div class="controls">
+    <button class="ctrl" data-prev="1" ${s.i===0?'disabled':''}><span class="knob">${icon('prev')}</span>Zurück</button>
+    <button class="ctrl main" data-toggle-run="1"><span class="knob" id="runIc">${icon(s.running?'pause':'play')}</span><span id="runLb">${s.running?'Pause':'Weiter'}</span></button>
+    <button class="ctrl" data-next="1"><span class="knob">${icon('next')}</span>Weiter</button>
+  </div>
+  <div class="info-cards">
+    <button class="info-card" data-sheet="anleitung"><span class="ic">${icon('book')}</span><h4>Anleitung</h4><span class="txt"><p>Schritt für Schritt</p>${icon('chev')}</span></button>
+    <button class="info-card" data-sheet="atmung"><span class="ic">${icon('wind')}</span><h4>Atmung</h4><span class="txt"><p>Ruhig und tief</p>${icon('chev')}</span></button>
+    <button class="info-card" data-sheet="vorteile"><span class="ic">${icon('heart')}</span><h4>Vorteile</h4><span class="txt"><p>Was es bringt</p>${icon('chev')}</span></button>
+  </div>`);
+}
+function tick(){
+  const s=SESSION; if(!s||!s.running) return;
+  s.left--; s.elapsed++; s.total++;
+  const it=s.items[s.i];
+  if(it.ex.side && s.left===Math.floor(it.sec/2)){ toast('Seite wechseln'); chime('step'); }
+  paintTimer();
+  if(s.left<=0) advance(1,true);
+}
+function paintTimer(){
+  const s=SESSION; if(!s) return;
+  const it=s.items[s.i];
+  const t=document.getElementById('tTime'); if(t) t.textContent=fmt(Math.max(0,s.left));
+  const fg=document.getElementById('ringFg');
+  if(fg) fg.style.strokeDashoffset = (RING*(1-Math.max(0,s.left)/it.sec)).toFixed(1);
+  const seg=document.getElementById('seg'+s.i);
+  if(seg) seg.style.width = (100*(1-Math.max(0,s.left)/it.sec)).toFixed(1)+'%';
+  /* Atemphase */
+  const cyc = it.ex.anim==='breathe'?10:8, inh = it.ex.anim==='breathe'?4:4;
+  const ph = (s.elapsed%cyc) < inh ? 'in':'out';
+  if(ph!==s.phase){
+    s.phase=ph;
+    const b=document.getElementById('bPhase'), x=document.getElementById('bText');
+    if(b&&x){ b.innerHTML=`${leafMark} ${ph==='in'?'Einatmen':'Ausatmen'}`; x.textContent = ph==='in'?it.ex.bIn:it.ex.bOut; }
+  }
+}
+function advance(dir, auto){
+  const s=SESSION; if(!s) return;
+  const n=s.i+dir;
+  if(n<0) return;
+  if(n>=s.items.length){ finishSession(); return; }
+  s.i=n; s.left=s.items[n].sec; s.elapsed=0; s.phase='';
+  renderPlayer(); paintTimer();
+  if(auto) chime('step');
+}
+function toggleRun(){
+  const s=SESSION; if(!s) return;
+  s.running=!s.running;
+  const pv=playerEl.querySelector('.pv'); if(pv) pv.classList.toggle('paused',!s.running);
+  const ic=document.getElementById('runIc'), lb=document.getElementById('runLb');
+  if(ic) ic.innerHTML=icon(s.running?'pause':'play');
+  if(lb) lb.textContent=s.running?'Pause':'Weiter';
+}
+
+/* ============================================================
+   12 — Abschluss
+   ============================================================ */
+const STIFF=[{v:5,l:'Kaum'},{v:15,l:'15 Min'},{v:30,l:'30 Min'},{v:60,l:'60+ Min'}];
+function finishSession(){
+  const s=SESSION; clearInterval(TICK); TICK=null;
+  const min=Math.max(1,Math.round(s.total/60));
+  const entry={date:todayKey(), progId:s.prog.id, min, stiff:null};
+  S.log.push(entry); save();
+  const st=streak();
+  finishEl.innerHTML=`
+    <div class="fscene">${pandaScene('sit','open',{hands:'head'})}</div>
+    <h2>Geschafft ♡</h2>
+    <p>${esc(s.prog.name)} ist durch. Dein Körper merkt sich vor allem, dass es wieder passiert ist.</p>
+    <div class="finish-stats">
+      <div class="fstat"><b>${min}</b><span>MINUTEN</span></div>
+      <div class="fstat"><b>${s.items.length}</b><span>ÜBUNGEN</span></div>
+      <div class="fstat"><b>${st}</b><span>TAGE REIHE</span></div>
+    </div>
+    <div class="stiff-log">
+      <h4>Wie steif war heute Morgen?</h4>
+      <p>Die Morgensteifigkeit ist der ehrlichste Verlaufswert bei Morbus Bechterew.</p>
+      <div class="stiff-opts">${STIFF.map(o=>`<button data-stiff="${o.v}" aria-pressed="false">${o.l}</button>`).join('')}</div>
+    </div>
+    <button class="btn block" data-finish-close="1" style="max-width:340px">Fertig</button>`;
+  finishEl.hidden=false;
+  chime('done');
+  playerEl.classList.remove('open');
+  setTimeout(()=>{ playerEl.hidden=true; playerEl.innerHTML=''; },320);
+  SESSION=null;
+}
+function closeFinish(){ finishEl.hidden=true; finishEl.innerHTML=''; render(); }
+
+/* ============================================================
+   13 — Sheets
+   ============================================================ */
+function openSheet(html){
+  sheetEl.innerHTML=`<div class="grab"></div>${html}`;
+  sheetEl.hidden=false; scrimEl.hidden=false;
+  requestAnimationFrame(()=>{ sheetEl.classList.add('open'); scrimEl.classList.add('open'); });
+}
+function closeSheet(){
+  sheetEl.classList.remove('open'); scrimEl.classList.remove('open');
+  setTimeout(()=>{ sheetEl.hidden=true; scrimEl.hidden=true; sheetEl.innerHTML=''; },300);
+}
+function currentEx(){ return SESSION ? SESSION.items[SESSION.i].ex : null; }
+function sheetFor(kind){
+  const ex=currentEx();
+  if(kind==='anleitung'&&ex) return `<h3>${icon('book')}${esc(ex.name)}</h3><p class="lead">So geht die Übung, Schritt für Schritt.</p><ol class="steps">${ex.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol><div class="note">Wenn eine Bewegung sticht oder ausstrahlt: kleiner machen oder auslassen. Ziehen ist erlaubt, Schmerz nicht.</div>`;
+  if(kind==='atmung'&&ex) return `<h3>${icon('wind')}Atmung</h3><p class="lead">${esc(ex.breathText)}</p><div class="note">Grundregel bei Morbus Bechterew: nie die Luft anhalten. Die Atmung hält den Brustkorb beweglich – sie ist Teil der Übung, nicht Beiwerk.</div>`;
+  if(kind==='vorteile'&&ex) return `<h3>${icon('heart')}Was es bringt</h3><ul class="bullets">${ex.benefits.map(b=>`<li>${icon('leaf')}<span>${esc(b)}</span></li>`).join('')}</ul>`;
+  if(kind==='session'&&SESSION) return `<h3>${icon('courses')}${esc(SESSION.prog.name)}</h3><p class="lead">${esc(SESSION.prog.note)}</p>
+    <ul class="bullets" style="gap:12px">${SESSION.items.map((it,k)=>`<li>${k<SESSION.i?icon('check'):icon('leaf')}<span><b>${esc(it.ex.name)}</b><br><span style="color:var(--ink-3);font-size:12.5px">${Math.round(it.sec/60*10)/10>=1?Math.round(it.sec/60)+' Min':it.sec+' Sek'} · ${it.ex.tag}</span></span></li>`).join('')}</ul>`;
+  if(kind==='safety') return `<h3>${icon('shield')}Gesundheitshinweis</h3>
+    <p class="lead">Pandamo ist ein Übungsbegleiter, keine Therapie. Bei Morbus Bechterew gilt: regelmäßige Bewegung ist eine der wirksamsten Maßnahmen überhaupt – die Dosis muss aber zur Tagesform passen.</p>
+    <ul class="bullets">
+      <li>${icon('info')}<span>Ziehen und Anstrengung sind in Ordnung. Stechender oder ausstrahlender Schmerz ist ein Stoppsignal.</span></li>
+      <li>${icon('info')}<span>Im akuten Schub auf „Sanfter Tag“ wechseln: Atmung, Lagerung, sehr kleine Bewegungen.</span></li>
+      <li>${icon('info')}<span>Nach Wirbelsäulen- oder Gelenk-OP, bei Osteoporose oder neuen neurologischen Zeichen wie Kribbeln vorher ärztlich abklären.</span></li>
+      <li>${icon('info')}<span>Nimm die Übungen mit zu deiner Physiotherapie – dort kann jemand deine Ausführung korrigieren.</span></li>
+    </ul>
+    <div class="note">Bei Brustschmerz, Atemnot oder plötzlicher Bewegungseinschränkung: Einheit sofort beenden und ärztlich abklären lassen.</div>`;
+  if(kind==='measure'){
+    const m=S.measures.slice(-1)[0]||{wall:2,chest:3.5};
+    return `<h3>${icon('ruler')}Messwerte</h3>
+      <p class="lead">Zwei Werte, die den Verlauf bei Morbus Bechterew gut abbilden. Miss sie etwa alle vier Wochen zur gleichen Tageszeit.</p>
+      <div class="group" style="margin-top:14px">
+        ${opt({ic:'target',title:'Hinterkopf–Wand',sub:'Mit Fersen und Gesäß an der Wand',right:stepper('mwall',(MEAS.wall)+' cm')})}
+        ${opt({ic:'wind',title:'Atembreite',sub:'Brustumfang eingeatmet minus ausgeatmet',right:stepper('mchest',String(MEAS.chest).replace('.',',')+' cm')})}
+      </div>
+      <button class="btn block" data-measure-save="1" style="margin-top:16px">Speichern</button>
+      <div class="note">Gemessen wird der Brustumfang auf Höhe der Brustwarzen. Werte unter 2,5 cm Atembreite sind ein Grund, sie beim nächsten Termin anzusprechen.</div>`;
+  }
+  if(kind==='runmode'){
+    return `<h3>${icon('shoe')}Laufen</h3><p class="lead">Wie läufst du heute?</p>
+      <div class="group" style="margin-top:12px">
+        <button class="opt" data-runmode-set="band" style="width:100%"><span class="oic">${icon('gym')}</span><span class="om"><b>Laufband mit Steigung</b><span>${String(S.run.speed).replace('.',',')} km/h · ${S.run.incline} % · ${S.run.minutes} Min</span></span>${S.run.mode==='band'?icon('check'):icon('chev')}</button>
+        <button class="opt" data-runmode-set="out" style="width:100%"><span class="oic">${icon('shoe')}</span><span class="om"><b>Draußen joggen</b><span>${S.run.outdoor} Min locker</span></span>${S.run.mode==='out'?icon('check'):icon('chev')}</button>
+      </div>
+      <button class="btn block ghost" data-go-profil="1" style="margin-top:14px">Werte ändern</button>`;
+  }
+  if(kind.startsWith('ex:')){
+    const e=EX[kind.slice(3)]; if(!e) return '';
+    return `<h3>${icon(tagIcon(e.tag))}${esc(e.name)}</h3>
+      <div style="height:170px;border-radius:20px;overflow:hidden;margin-top:12px;background:var(--room-2)">${pandaScene(e.pose,e.anim,e.opt||{})}</div>
+      <p class="lead">${esc(e.short)}</p>
+      <ol class="steps">${e.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>
+      <ul class="bullets">${e.benefits.map(b=>`<li>${icon('leaf')}<span>${esc(b)}</span></li>`).join('')}</ul>`;
+  }
+  return '';
+}
+let MEAS={wall:2,chest:3.5};
+/* ============================================================
+   14 — Navigation & Ereignisse
+   ============================================================ */
+const TABS=[{id:'start',label:'Start',ic:'home'},{id:'kurse',label:'Kurse',ic:'courses'},{id:'fortschritt',label:'Fortschritt',ic:'chart'},{id:'profil',label:'Profil',ic:'user'}];
+const VIEWS={start:viewHome,kurse:viewKurse,fortschritt:viewFortschritt,profil:viewProfil};
+let TAB='start';
+function render(){
+  screenEl.innerHTML=VIEWS[TAB]();
+  document.getElementById('tabbar').innerHTML=TABS.map(t=>
+    `<button class="tab" role="tab" aria-selected="${TAB===t.id}" data-go="${t.id}">${icon(t.ic)}${t.label}</button>`).join('');
+  document.documentElement.classList.toggle('calm', !!S.calm);
+}
+function go(tab){ if(!VIEWS[tab]) return; TAB=tab; render(); screenEl.scrollTop=0; }
+
+const STEPS={
+  minutes:{get:()=>S.minutes,set:v=>S.minutes=Math.min(40,Math.max(5,v)),d:5},
+  incline:{get:()=>S.run.incline,set:v=>S.run.incline=Math.min(15,Math.max(0,v)),d:1},
+  speed:{get:()=>S.run.speed,set:v=>S.run.speed=Math.round(Math.min(12,Math.max(2,v))*10)/10,d:.5},
+  runmin:{get:()=>S.run.minutes,set:v=>S.run.minutes=Math.min(90,Math.max(5,v)),d:5},
+  outmin:{get:()=>S.run.outdoor,set:v=>S.run.outdoor=Math.min(120,Math.max(5,v)),d:5},
+  mwall:{get:()=>MEAS.wall,set:v=>MEAS.wall=Math.max(0,Math.round(v*10)/10),d:.5},
+  mchest:{get:()=>MEAS.chest,set:v=>MEAS.chest=Math.max(0,Math.round(v*10)/10),d:.5}
+};
+
+document.addEventListener('click', e=>{
+  const t=e.target;
+  if(!(t instanceof Element)) return;
+  const hit=(sel)=>t.closest(sel);
+  let el;
+
+  if((el=hit('[data-go]'))){ go(el.dataset.go); return; }
+  if((el=hit('[data-start]'))){ startSession(el.dataset.start); return; }
+  if((el=hit('[data-ex]'))){ openSheet(sheetFor('ex:'+el.dataset.ex)); return; }
+  if((el=hit('[data-sheet]'))){
+    const k=el.dataset.sheet;
+    if(k==='measure'){ const m=S.measures.slice(-1)[0]; MEAS={wall:m&&m.wall!=null?m.wall:2, chest:m&&m.chest!=null?m.chest:3.5}; }
+    openSheet(sheetFor(k)); return;
+  }
+  if((el=hit('[data-runmode]'))){ openSheet(sheetFor('runmode')); return; }
+  if((el=hit('[data-runmode-set]'))){ S.run.mode=el.dataset.runmodeSet; S.place='run'; save(); closeSheet(); render(); return; }
+  if((el=hit('[data-go-profil]'))){ closeSheet(); go('profil'); return; }
+  if((el=hit('[data-place]'))){ S.place=el.dataset.place; save(); render(); return; }
+  if((el=hit('[data-toggle]'))){
+    const k=el.dataset.toggle;
+    if(k==='sound'){ S.sound=!S.sound; if(S.sound) chime('step'); }
+    else if(k==='calm'){ S.calm=!S.calm; }
+    else S.equip[k]=!S.equip[k];
+    save(); render(); return;
+  }
+  if((el=hit('[data-step]'))){
+    const [k,dir]=el.dataset.step.split(':'); const st=STEPS[k]; if(!st) return;
+    st.set(st.get()+st.d*Number(dir));
+    if(k==='mwall'||k==='mchest'){ sheetEl.innerHTML=`<div class="grab"></div>${sheetFor('measure')}`; }
+    else { save(); render(); }
+    return;
+  }
+  if((el=hit('[data-measure-save]'))){
+    S.measures.push({date:todayKey(), wall:MEAS.wall, chest:MEAS.chest}); save(); closeSheet();
+    toast('Messwerte gespeichert'); if(TAB==='fortschritt') render(); return;
+  }
+  if((el=hit('[data-player-close]'))){ closePlayer(); render(); return; }
+  if((el=hit('[data-prev]'))){ advance(-1); return; }
+  if((el=hit('[data-next]'))){ advance(1); return; }
+  if((el=hit('[data-toggle-run]'))){ toggleRun(); return; }
+  if((el=hit('[data-stiff]'))){
+    const v=Number(el.dataset.stiff);
+    const last=S.log[S.log.length-1]; if(last){ last.stiff=v; save(); }
+    el.parentElement.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed', b===el?'true':'false'));
+    return;
+  }
+  if((el=hit('[data-finish-close]'))){ closeFinish(); return; }
+  if((el=hit('[data-reset]'))){
+    openSheet(`<h3>${icon('trash')}Daten löschen</h3><p class="lead">Alle Einheiten, Messwerte und Einstellungen auf diesem Gerät werden entfernt. Das lässt sich nicht rückgängig machen.</p>
+      <button class="btn block danger ghost" data-reset-yes="1" style="margin-top:16px">Ja, alles löschen</button>
+      <button class="btn block soft" data-sheet-close="1" style="margin-top:8px">Abbrechen</button>`);
+    return;
+  }
+  if((el=hit('[data-reset-yes]'))){
+    try{ localStorage.removeItem(KEY); }catch(err){}
+    S=structuredClone(DEFAULTS); closeSheet(); go('start'); toast('Alles zurückgesetzt'); return;
+  }
+  if((el=hit('[data-sheet-close]')) || t===scrimEl){ closeSheet(); return; }
+  if((el=hit('[data-intro-place]'))){ S.place=el.dataset.introPlace; save(); renderIntro(); return; }
+  if((el=hit('[data-intro-equip]'))){ const k=el.dataset.introEquip; S.equip[k]=!S.equip[k]; save(); renderIntro(); return; }
+  if((el=hit('[data-intro-min]'))){ S.minutes=Number(el.dataset.introMin); save(); renderIntro(); return; }
+  if((el=hit('[data-intro-done]'))){ S.intro=false; save(); $('#intro').hidden=true; render(); return; }
+});
+document.addEventListener('change', e=>{
+  const sel=e.target.closest('[data-plan]');
+  if(sel){ S.plan[sel.dataset.plan]=sel.value; save(); toast('Wochenplan aktualisiert'); }
+});
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape'){
+    if(sheetEl.classList.contains('open')) return closeSheet();
+    if(!playerEl.hidden) return closePlayer();
+  }
+  if(e.code==='Space' && !playerEl.hidden && SESSION){ e.preventDefault(); toggleRun(); }
+});
+
+/* ============================================================
+   15 — Einrichtung beim ersten Start
+   ============================================================ */
+function renderIntro(){
+  const el=$('#intro');
+  el.innerHTML=`
+    <div class="intro-scene">${pandaScene('sit','breathe',{hands:'ribs'})}</div>
+    <div>
+      <div class="wordmark" style="font-size:34px"><span>Panda<em>mo</em></span>${leafMark}</div>
+      <div class="claim" style="font-size:14px">Find your calm.</div>
+    </div>
+    <p class="lead">Tägliche Bewegung bei Morbus Bechterew: Beweglichkeit, Atmung, Kraft – in Einheiten, die sich auch an steifen Tagen machen lassen.</p>
+    <div class="pickers">
+      <div class="picker"><h4>Wo trainierst du meistens?</h4>
+        <div class="multi">${PLACES.map(p=>`<button data-intro-place="${p.id}" aria-pressed="${S.place===p.id}">${icon(p.ic)}${p.label}</button>`).join('')}</div>
+      </div>
+      <div class="picker"><h4>Was hast du zu Hause?</h4>
+        <div class="multi">
+          <button data-intro-equip="stuhl" aria-pressed="${S.equip.stuhl}">${icon('chair')}Stuhl</button>
+          <button data-intro-equip="hanteln" aria-pressed="${S.equip.hanteln}">${icon('dumbbell')}Mini-Hanteln</button>
+          <button data-intro-equip="band" aria-pressed="${S.equip.band}">${icon('band')}Sportband</button>
+        </div>
+      </div>
+      <div class="picker"><h4>Wie lange am Stück?</h4>
+        <div class="multi">${[10,15,20,25].map(m=>`<button data-intro-min="${m}" aria-pressed="${S.minutes===m}">${icon('clock')}${m} Min</button>`).join('')}</div>
+      </div>
+    </div>
+    <button class="btn block" data-intro-done="1" style="margin-top:6px">Los geht's ${icon('arrowR')}</button>
+    <p class="disclaimer" style="text-align:center">Kein Ersatz für ärztliche Behandlung oder Physiotherapie. Alle Daten bleiben auf diesem Gerät.</p>`;
+  el.hidden=false;
+}
+
+/* ============================================================
+   16 — Start
+   ============================================================ */
+render();
+if(S.intro) renderIntro();
+</script>
+
+<script>
+/* ============================================================
+   17 — Nur in der installierten Version:
+   Bildschirm wachhalten + Offline-Betrieb
+   ============================================================ */
+let WAKE=null;
+async function wakeOn(){
+  try{ if('wakeLock' in navigator && !WAKE){ WAKE=await navigator.wakeLock.request('screen'); WAKE.addEventListener('release',()=>{WAKE=null;}); } }catch(e){}
+}
+async function wakeOff(){ try{ if(WAKE){ const w=WAKE; WAKE=null; await w.release(); } }catch(e){} }
+setInterval(()=>{ (typeof SESSION!=='undefined' && SESSION && SESSION.running) ? wakeOn() : wakeOff(); }, 2000);
+document.addEventListener('visibilitychange', ()=>{
+  if(document.visibilityState==='visible' && typeof SESSION!=='undefined' && SESSION && SESSION.running) wakeOn();
+});
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{ navigator.serviceWorker.register('sw.js').catch(()=>{}); });
+}
+</script>
+</body>
+</html>
